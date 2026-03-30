@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Défi logique</title>
+  <link rel="stylesheet" href="./farmer.css" />
+</head>
+<body>
+
+  <div class="card">
+    <h1>Défi logique</h1>
+
+    <p class="description">
+      Un fermier a <strong>100 animaux</strong> : des poules et des lapins.<br>
+      Il compte <strong>276 pattes</strong>.<br>
+      Combien y a-t-il de poules et de lapins ?
+    </p>
+
+    <div class="animals">
+      <div class="animal">
+        <img src="https://cdn-icons-png.flaticon.com/512/616/616408.png" alt="Poule" />
+        <h2>Poule</h2>
+        <p>2 pattes</p>
+      </div>
+
+      <div class="animal">
+        <img src="https://cdn-icons-png.flaticon.com/512/616/616430.png" alt="Lapin" />
+        <h2>Lapin</h2>
+        <p>4 pattes</p>
+      </div>
+    </div>
+
+    <div class="form-group">
+      <div class="input-box">
+        <label>Nombre de poules</label>
+        <input type="number" id="poules" min= "0" placeholder="Ex: 62" />
+      </div>
+
+      <div class="input-box">
+        <label>Nombre de lapins</label>
+        <input type="number" id="lapins" min= "0" placeholder="Ex: 38" />
+      </div>
+    </div>
+
+    <button onclick="checkAnswer()">Valider</button>
+
+    <p id="result"></p>
+
+    <p class="hint">
+      Indice : le total doit faire 100 animaux.
+    </p>
+  </div>
+
+  <script src="./farmer.js"></script>
+</body>
+</html>
