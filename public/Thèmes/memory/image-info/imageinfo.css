@@ -1,0 +1,248 @@
+* {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  font-family: Arial, sans-serif;
+  background: #f5f7fb;
+  color: #1f2937;
+}
+
+.container {
+  max-width: 1000px;
+  margin: 40px auto;
+  padding: 0 16px;
+}
+
+h1 {
+  margin-bottom: 8px;
+}
+
+.subtitle {
+  margin-top: 0;
+  margin-bottom: 24px;
+  color: #4b5563;
+}
+
+.card {
+  background: #ffffff;
+  border-radius: 10px;
+  padding: 20px;
+  border: 1px solid #e5e7eb;
+}
+
+.step-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 20px;
+}
+
+.badge {
+  background: #e5e7eb;
+  color: #111827;
+  padding: 4px 10px;
+  border-radius: 999px;
+  font-size: 0.9rem;
+}
+
+/* Phase 1: Go Button */
+.image-phase {
+  display: none;
+}
+
+.image-phase.active {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 300px;
+}
+
+.go-button-wrapper {
+  text-align: center;
+}
+
+.go-button {
+  padding: 20px 60px;
+  font-size: 2rem;
+  font-weight: bold;
+  background: #2563eb;
+  color: white;
+  border: none;
+  border-radius: 12px;
+  cursor: pointer;
+  transition: background 0.3s;
+}
+
+.go-button:hover {
+  background: #1d4ed8;
+}
+
+.go-button:disabled {
+  background: #9ca3af;
+  cursor: not-allowed;
+}
+
+/* Phase 2: Timer & Image */
+.timer-phase {
+  display: none;
+  flex-direction: column;
+  align-items: center;
+  gap: 20px;
+}
+
+.timer-phase.active {
+  display: flex;
+}
+
+.timer-display {
+  font-size: 3rem;
+  font-weight: bold;
+  color: #2563eb;
+  min-width: 120px;
+  text-align: center;
+}
+
+.challenge-img {
+  max-width: 95%;
+  max-height: 80vh;
+  border-radius: 8px;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+}
+
+/* Phase 3: Quiz */
+.quiz-phase {
+  display: none;
+}
+
+.quiz-phase.active {
+  display: block;
+}
+
+#questionsContainer {
+  margin-bottom: 20px;
+}
+
+.question-block {
+  margin-bottom: 20px;
+  padding: 15px;
+  background: #f9fafb;
+  border-radius: 8px;
+}
+
+.question-block strong {
+  display: block;
+  margin-bottom: 10px;
+  color: #111827;
+}
+
+.question-options {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.option-label {
+  display: flex;
+  align-items: center;
+  cursor: pointer;
+  padding: 8px;
+  border-radius: 6px;
+  transition: background 0.2s;
+}
+
+.option-label:hover {
+  background: #e5e7eb;
+}
+
+.option-label input[type="radio"] {
+  margin-right: 10px;
+  cursor: pointer;
+}
+
+.submit-button {
+  padding: 12px 24px;
+  background: #2563eb;
+  color: white;
+  border: none;
+  border-radius: 8px;
+  font-size: 1rem;
+  cursor: pointer;
+  transition: background 0.3s;
+}
+
+.submit-button:hover {
+  background: #1d4ed8;
+}
+
+.submit-button:disabled {
+  background: #9ca3af;
+  cursor: not-allowed;
+}
+
+/* Phase 4: Result */
+.result-phase {
+  display: none;
+  text-align: center;
+}
+
+.result-phase.active {
+  display: block;
+}
+
+#resultContent {
+  padding: 20px;
+  border-radius: 8px;
+  margin-bottom: 20px;
+  font-size: 1.1rem;
+}
+
+#resultContent.win {
+  background: #dcfce7;
+  color: #166534;
+  border: 2px solid #22c55e;
+}
+
+#resultContent.lose {
+  background: #fee2e2;
+  color: #7f1d1d;
+  border: 2px solid #ef4444;
+}
+
+.next-button,
+.retry-button {
+  padding: 12px 24px;
+  border: none;
+  border-radius: 8px;
+  font-size: 1rem;
+  cursor: pointer;
+  transition: background 0.3s;
+  margin: 0 10px;
+}
+
+.next-button {
+  background: #22c55e;
+  color: white;
+}
+
+.next-button:hover {
+  background: #16a34a;
+}
+
+.retry-button {
+  background: #ef4444;
+  color: white;
+}
+
+.retry-button:hover {
+  background: #dc2626;
+}
+
+.phase {
+  display: none;
+}
+
+.phase.active {
+  display: block;
+}
