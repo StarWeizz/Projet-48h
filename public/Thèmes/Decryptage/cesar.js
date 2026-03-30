@@ -1,4 +1,4 @@
-const normalizeAnswer = require("../utils/normalizeAnswer");
+const normalizeAnswer = require("../../../src/utils/normalizeAnswer");
 
 const userDecallage = [19, 7, 4];
 
