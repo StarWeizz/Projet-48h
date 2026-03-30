@@ -20,7 +20,7 @@ async function populatePlayer(playerId) {
 
 exports.createPlayer = async (req, res, next) => {
     try {
-        const firstTheme = await Theme.findOne({ isPublished: true }).sort({ order: 1 });
+        const firstTheme = await Theme.findOne({ isPublished: true }).sort({ order: 1, name: 1 });
 
         const player = await Player.create({
             username: req.body.username,
@@ -147,7 +147,7 @@ exports.completeChallenge = async (req, res, next) => {
         }
 
         if (player.unlockedThemes.length === 0) {
-            const firstTheme = await Theme.findOne({ isPublished: true }).sort({ order: 1 });
+            const firstTheme = await Theme.findOne({ isPublished: true }).sort({ order: 1, name: 1 });
 
             if (firstTheme && firstTheme._id.toString() === challenge.theme._id.toString()) {
                 player.unlockedThemes.push(firstTheme._id);
@@ -199,7 +199,7 @@ exports.completeChallenge = async (req, res, next) => {
             const nextTheme = await Theme.findOne({
                 isPublished: true,
                 order: { $gt: challenge.theme.order },
-            }).sort({ order: 1 });
+            }).sort({ order: 1, name: 1 });
 
             if (
                 nextTheme &&

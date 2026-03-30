@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Defi Exemple | API Check</title>
+    <link rel="stylesheet" href="/challenges/exemple/defiexemple/defiexemple.css">
+    <script src="/challenges/exemple/defiexemple/defiexemple.js" defer></script>
+</head>
+<body>
+    <main class="page-shell">
+        <section class="hero-card">
+            <p class="eyebrow">Defi de reference</p>
+            <h1>Smoke test front, API et Mongo</h1>
+            <p class="hero-copy">
+                Cette page montre comment un defi statique en HTML, CSS et JS peut dialoguer avec l'API commune
+                sans casser l'architecture du projet.
+            </p>
+            <div class="hero-links">
+                <a href="/api" target="_blank" rel="noreferrer">Voir l'API</a>
+                <a href="/health" target="_blank" rel="noreferrer">Healthcheck</a>
+            </div>
+        </section>
+
+        <section class="dashboard-grid">
+            <article class="panel">
+                <div class="panel-header">
+                    <p class="step-label">Etape 1</p>
+                    <h2>Verifier l'API</h2>
+                </div>
+                <p>Teste la communication de base avec le serveur Express.</p>
+                <button id="check-api-button" class="primary-button">Tester /health</button>
+                <pre id="health-result" class="code-block">Aucun test lance.</pre>
+            </article>
+
+            <article class="panel">
+                <div class="panel-header">
+                    <p class="step-label">Etape 2</p>
+                    <h2>Initialiser un theme et un defi</h2>
+                </div>
+                <p>Le script cree un theme si la base est vide, puis y ajoute un defi de smoke test.</p>
+                <button id="bootstrap-button" class="primary-button">Initialiser la demo</button>
+                <pre id="bootstrap-result" class="code-block">Aucune donnee de demo chargee.</pre>
+            </article>
+
+            <article class="panel">
+                <div class="panel-header">
+                    <p class="step-label">Etape 3</p>
+                    <h2>Creer ou retrouver un joueur</h2>
+                </div>
+                <form id="player-form" class="stacked-form">
+                    <label for="player-name">Pseudo du joueur</label>
+                    <input id="player-name" name="player-name" type="text" placeholder="team-api-check" required>
+                    <button type="submit" class="primary-button">Charger ce joueur</button>
+                </form>
+                <pre id="player-result" class="code-block">Aucun joueur selectionne.</pre>
+            </article>
+
+            <article class="panel challenge-panel">
+                <div class="panel-header">
+                    <p class="step-label">Etape 4</p>
+                    <h2>Soumettre une reponse</h2>
+                </div>
+                <p id="challenge-statement">Initialise d'abord les donnees de demo pour afficher le defi.</p>
+                <p id="challenge-hint" class="hint-text"></p>
+                <form id="answer-form" class="stacked-form">
+                    <label for="challenge-answer">Ta reponse</label>
+                    <input id="challenge-answer" name="challenge-answer" type="text" placeholder="api" required>
+                    <button type="submit" class="primary-button">Valider la reponse</button>
+                </form>
+                <pre id="answer-result" class="code-block">En attente de validation.</pre>
+            </article>
+
+            <article class="panel">
+                <div class="panel-header">
+                    <p class="step-label">Etape 5</p>
+                    <h2>Leaderboard</h2>
+                </div>
+                <p>Permet de verifier que les scores remontent bien cote API.</p>
+                <button id="leaderboard-button" class="secondary-button">Rafraichir le classement</button>
+                <ul id="leaderboard-list" class="leaderboard-list">
+                    <li>Aucun score pour le moment.</li>
+                </ul>
+            </article>
+
+            <article class="panel log-panel">
+                <div class="panel-header">
+                    <p class="step-label">Journal</p>
+                    <h2>Trace d'integration</h2>
+                </div>
+                <ul id="log-list" class="log-list"></ul>
+            </article>
+        </section>
+    </main>
+</body>
+</html>
