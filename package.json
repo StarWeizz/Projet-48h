@@ -1,0 +1,27 @@
+{
+  "name": "challenge-48h",
+  "version": "1.0.0",
+  "description": "API Express + MongoDB pour une plateforme de defis interactifs Challenge 48H.",
+  "main": "src/server.js",
+  "scripts": {
+    "dev": "node --watch src/server.js",
+    "start": "node src/server.js",
+    "seed": "node src/scripts/seedDemoData.js",
+    "check": "node --check src/server.js && node --check src/app.js && node --check src/config/db.js && node --check src/controllers/themeController.js && node --check src/controllers/challengeController.js && node --check src/controllers/playerController.js && node --check src/middlewares/notFound.js && node --check src/middlewares/errorHandler.js && node --check src/models/Theme.js && node --check src/models/Challenge.js && node --check src/models/Player.js && node --check src/routes/index.js && node --check src/routes/themeRoutes.js && node --check src/routes/challengeRoutes.js && node --check src/routes/playerRoutes.js && node --check src/scripts/seedDemoData.js && node --check src/utils/slugify.js && node --check src/utils/normalizeAnswer.js",
+    "test": "npm run check"
+  },
+  "keywords": [
+    "challenge",
+    "express",
+    "mongodb",
+    "ynov"
+  ],
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "cors": "^2.8.6",
+    "dotenv": "^17.3.1",
+    "express": "^5.2.1",
+    "mongoose": "^9.3.3"
+  }
+}
