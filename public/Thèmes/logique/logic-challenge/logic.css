@@ -66,9 +66,15 @@ h1 {
   flex: 1;
 }
 
+label {
+  display: block;
+  margin-bottom: 8px;
+}
+
 input {
   width: 100%;
   padding: 10px;
+  box-sizing: border-box;
   border-radius: 8px;
   border: none;
 }
