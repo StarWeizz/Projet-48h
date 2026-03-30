@@ -1,0 +1,11 @@
+const express = require("express");
+
+const challengeController = require("../controllers/challengeController");
+
+const router = express.Router();
+
+router.get("/", challengeController.getChallenges);
+router.get("/:id", challengeController.getChallengeById);
+router.post("/", challengeController.createChallenge);
+
+module.exports = router;
