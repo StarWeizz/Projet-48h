@@ -4774,3 +4774,7 @@ ul {
 .defi {
 	cursor: pointer;
 }
+
+#footer h2 {
+	padding: 30px 10px;
+}
