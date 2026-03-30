@@ -4,11 +4,24 @@ const challenges = [
         imageURL: "./triangle_1.png",
         options: [17, 18, 22, 15],
         answer: 3
+    },
+    {
+        question: "Combien y a t-il de triangles dans l'image ?",
+        imageURL: "./triangle_2.png",
+        options: [17, 18, 22, 15],
+        answer: 3
+    },
+    {
+        question: "Combien y a t-il de triangles dans l'image ?",
+        imageURL: "./triangle_3.png",
+        options: [17, 18, 22, 15],
+        answer: 3
     }
 ]
 
 let currentQuestions = [];
 let currentQuestionIndex = 0;
+let score = 0;
 
 let timerInterval;
 let timeLeft = 10;
@@ -16,88 +29,47 @@ let timeLeft = 10;
 document.addEventListener('DOMContentLoaded', () => {
     const challengesCount = challenges.length;
     const challengesCountElement = document.getElementById("challenges-count");
-
     challengesCountElement.textContent = challengesCount;
-})
 
-const startGameElement = document.getElementById("startGame");
-
-startGameElement.addEventListener("submit", (event) => {
-    event.preventDefault();
-
-    startGame();
+    const startGameElement = document.getElementById("startGame");
+    startGameElement.addEventListener("click", () => {
+        startGame();
+    });
 })
 
 function startGame() {
-    const challengesList = challenges[0]
-    const answers = challenges.answers;
-    const answersElement = document.getElementById("answers");
-
-    answersElement.innerHTML = `
-    <fieldset>
-  <legend>Sélectionnez une réponse :</legend>
-
-  <div>
-    <input type="radio" id="huey" name="drone" value="huey" checked />
-    <label for="huey">Huey</label>
-  </div>
-
-  <div>
-    <input type="radio" id="dewey" name="drone" value="dewey" />
-    <label for="dewey">Dewey</label>
-  </div>
-
-  <div>
-    <input type="radio" id="louie" name="drone" value="louie" />
-    <label for="louie">Louie</label>
-  </div>
-</fieldset>
-
-    `
-}
-
-function startGame() {
-
     currentQuestions = challenges
         .sort(() => Math.random() - 0.5)
         .slice(0, 10);
 
     currentQuestionIndex = 0;
+    score = 0;
 
     toggleGame();
     showQuestion();
 }
 
 function startTimer() {
-
     timeLeft = 10;
-
     clearInterval(timerInterval);
 
     timerInterval = setInterval(() => {
-
         timeLeft--;
 
         const timer = document.getElementById("timer");
-
         if (timer) {
             timer.textContent = `Temps restant : ${timeLeft}s`;
         }
 
         if (timeLeft <= 0) {
-
             clearInterval(timerInterval);
-
             currentQuestionIndex++;
-
             showQuestion();
         }
-
     }, 1000);
 }
 
 function toggleGame() {
-
     const welcome = document.getElementById("welcome-quiz");
     const game = document.getElementById("game");
 
@@ -109,7 +81,6 @@ function toggleGame() {
 }
 
 function showQuestion() {
-
     const gameDiv = document.getElementById("game");
     gameDiv.innerHTML = "";
 
@@ -121,7 +92,6 @@ function showQuestion() {
     const question = currentQuestions[currentQuestionIndex];
 
     const header = document.createElement("div");
-
     header.innerHTML = `
         <span>Question ${currentQuestionIndex + 1} / ${currentQuestions.length}</span>
         <span id="timer">Temps restant : 10s</span>
@@ -132,20 +102,22 @@ function showQuestion() {
 
     const title = document.createElement("h2");
     title.textContent = question.question;
-
     questionBlock.appendChild(title);
 
-    question.options.forEach((option, index) => {
+    if (question.imageURL) {
+        const img = document.createElement("img");
+        img.src = question.imageURL;
+        img.alt = question.question;
+        questionBlock.appendChild(img);
+    }
 
+    question.options.forEach((option, index) => {
         const btn = document.createElement("button");
         btn.textContent = option;
 
         btn.addEventListener("click", () => {
-
             clearInterval(timerInterval);
-
             checkAnswer(index, question);
-
         });
 
         questionBlock.appendChild(btn);
@@ -160,4 +132,36 @@ function showQuestion() {
     });
 
     startTimer();
+}
+
+function checkAnswer(index, question) {
+    const gameDiv = document.getElementById("game");
+    const isCorrect = index === question.answer;
+
+    if (isCorrect) score++;
+
+    const feedback = document.createElement("p");
+    feedback.textContent = isCorrect
+        ? "Bonne réponse !"
+        : `Mauvaise réponse. La bonne réponse était : ${question.options[question.answer]}`;
+
+    gameDiv.appendChild(feedback);
+
+    setTimeout(() => {
+        currentQuestionIndex++;
+        showQuestion();
+    }, 1500);
+}
+
+function endQuiz() {
+    const gameDiv = document.getElementById("game");
+    gameDiv.innerHTML = `
+        <h2>Quiz terminé !</h2>
+        <p>Score : ${score} / ${currentQuestions.length}</p>
+        <button id="restart-btn">Rejouer</button>
+    `;
+
+    document.getElementById("restart-btn").addEventListener("click", () => {
+        toggleGame();
+    });
 }
