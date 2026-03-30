@@ -1,7 +1,7 @@
 <!DOCTYPE HTML>
 <html>
 	<head>
-		<title>Elements Reference - Massively by HTML5 UP</title>
+		<title>Decryptage - Quiz 48h</title>
 		<meta charset="utf-8" />
 		<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
 		<link rel="stylesheet" href="assets/css/main.css" />
@@ -20,8 +20,8 @@
 			<!--Nav-->
 			<nav id="nav">
 				<ul class="links">
-					<li><a href="index.html">This is Massively</a></li>
-					<li><a href="logic.html"> logic </a> </li>
+					<li><a href="index.html">menu principal</a></li>
+					<li><a href="logic.html"> logique </a> </li>
 					<li><a href="memoire.html">memoire</a></li>
 					<li class="active"><a href="decryptage.html">decryptage</a></li>
 				</ul>
@@ -32,60 +32,96 @@
 
 				<!-- Posts -->
 				<section class="posts">
-					<article>
+
+					<article class="defi"
+							 data-title="Quid dicis?"
+data-text="Un message ancien a traversé les siècles. Déchiffre ce code latin et révèle son sens caché."
+							 data-link="jeu_decryptage1.html">
 						<header>
-							<span class="date">April 18, 2017</span>
-							<h2>
-								<a href="decryptage.html">
-									Quid dicis?
-								</a>
-							</h2>
+							<h2>Quid dicis?</h2>
 						</header>
-						<a href="decryptage.html" class="image fit"><img src="images/cesar.jpg" alt="" /></a>
+						<a href="#" class="image fit"><img src="images/cesar.jpg" alt="" /></a>
 						<p>veni vidi vici</p>
 					</article>
 
-					<article>
+					<article class="defi"
+							 data-title="Le mugissement secret !"
+data-text="Un signal étrange a été capté… Il semble structuré. Analyse le code Morse pour révéler le message dissimulé."
+							 data-link="jeu_decryptage2.html">
 						<header>
-							<span class="date">April 18, 2017</span>
-							<h2>
-								<a href="decryptage.html">
-									Le mugissement secret !
-								</a>
-							</h2>
+							<h2>Le mugissement secret !</h2>
 						</header>
-						<a href="decryptage.html" class="image fit"><img src="images/morse.jpg" alt="" /></a>
-						<p>Le mugissement peut être entendu à plus de 1,5 km de distance</p>
+						<a href="#" class="image fit"><img src="images/morse.jpg" alt="" /></a>
+						<p>Un son peut cacher un message...</p>
 					</article>
 
-					<article>
+					<article class="defi"
+							 data-title="Esprit scientifique !"
+data-text="Une structure complexe se dresse devant toi. Étudie-la attentivement et identifie le code qu’elle renferme."
+							 data-link="jeu_decryptage3.html">
 						<header>
-							<h2>
-                                <a href="public/Thèmes/Decryptage/chimie/chimie.html">
-                                    Esprit scientifique !
-                                </a>
-							</h2>
+							<h2>Esprit scientifique !</h2>
 						</header>
-						<a href="public/Thèmes/Decryptage/chimie/chimie.html" class="image fit"><img src="images/molecule.jpg" alt="" /></a>
-						<p>La science renferme encore des secrets... Assemble les formules chimiques pour retrouver le mot caché.</p>
+						<a href="#" class="image fit"><img src="images/molecule.jpg" alt="" /></a>
+						<p>La science renferme encore des secrets...</p>
 					</article>
-
-
 
 				</section>
 
 			</div>
 
+			<div id="modal" class="modal">
+				<div class="modal-content">
+					<span class="close">&times;</span>
+					<h2 id="modal-title">Titre</h2>
+					<p id="modal-text">Contenu du défi</p>
+					<button id="start-btn">Lancer le défi</button>
+				</div>
 			</div>
 
-			<!-- Scripts -->
-			<script src="assets/js/jquery.min.js"></script>
-			<script src="assets/js/jquery.scrollex.min.js"></script>
-			<script src="assets/js/jquery.scrolly.min.js"></script>
-			<script src="assets/js/browser.min.js"></script>
-			<script src="assets/js/breakpoints.min.js"></script>
-			<script src="assets/js/util.js"></script>
-			<script src="assets/js/main.js"></script>
+		</div>
 
-</body>
+		<!-- Scripts -->
+		<script src="assets/js/jquery.min.js"></script>
+		<script src="assets/js/jquery.scrollex.min.js"></script>
+		<script src="assets/js/jquery.scrolly.min.js"></script>
+		<script src="assets/js/browser.min.js"></script>
+		<script src="assets/js/breakpoints.min.js"></script>
+		<script src="assets/js/util.js"></script>
+		<script src="assets/js/main.js"></script>
+		<script>
+			const modal = document.getElementById("modal");
+			const modalTitle = document.getElementById("modal-title");
+			const modalText = document.getElementById("modal-text");
+			const closeBtn = document.querySelector(".close");
+			const startBtn = document.getElementById("start-btn");
+
+			let currentLink = "#";
+
+			document.querySelectorAll(".defi").forEach(defi => {
+			defi.addEventListener("click", () => {
+			modalTitle.textContent = defi.dataset.title;
+			modalText.textContent = defi.dataset.text;
+			currentLink = defi.dataset.link;
+
+			modal.style.display = "block";
+			});
+			});
+
+			startBtn.onclick = () => {
+			window.location.href = currentLink;
+			};
+
+			closeBtn.onclick = () => {
+			modal.style.display = "none";
+			};
+
+			window.onclick = (e) => {
+			if (e.target === modal) {
+			modal.style.display = "none";
+			}
+			};
+		</script>
+
+	</body>
 </html>

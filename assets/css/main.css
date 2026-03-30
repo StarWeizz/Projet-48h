@@ -4687,3 +4687,94 @@ input, select, textarea {
 		}
 
 	}
+/* ===================== MODAL ===================== */
+.modal {
+	display: none;
+	position: fixed;
+	z-index: 999;
+	inset: 0; /* remplace left/top/width/height */
+	background: rgba(0, 0, 0, 0.7);
+}
+
+.modal-content {
+	background: white;
+	margin: 15% auto;
+	padding: 20px;
+	width: 50%;
+	border-radius: 10px;
+	text-align: center;
+}
+
+.close {
+	float: right;
+	font-size: 28px;
+	cursor: pointer;
+}
+
+/* ===================== BUTTON ===================== */
+#start-btn {
+	margin-top: 20px;
+	padding: 10px 20px;
+	border: none;
+	background: #ff4757;
+	color: white;
+	font-size: 16px;
+	border-radius: 5px;
+	cursor: pointer;
+	transition: background 0.2s ease;
+}
+
+	#start-btn:hover {
+		background: #e84118;
+	}
+
+/* ===================== FOOTER ===================== */
+#footer {
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	text-align: center;
+}
+
+	/* Titre */
+	#footer h2 {
+		margin-bottom: 20px;
+	}
+
+/* ===================== GRID LIST ===================== */
+.grid-list {
+	display: grid;
+	grid-template-columns: repeat(4, minmax(150px, 1fr));
+	gap: 10px;
+	list-style: none;
+	padding: 0;
+	margin: 0 auto;
+	max-width: 800px;
+}
+
+	/* Items */
+	.grid-list li {
+		background: #eee;
+		padding: 15px;
+		text-align: center;
+		border-radius: 8px;
+		transition: transform 0.2s ease;
+	}
+
+		.grid-list li:hover {
+			transform: scale(1.05);
+		}
+
+/* Reset UL */
+ul {
+	margin: 0;
+	padding: 0;
+}
+
+.defi {
+	cursor: pointer;
+}
+
+#footer h2 {
+	padding: 30px 10px;
+}
