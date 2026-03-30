@@ -1,23 +1,102 @@
 const challenges = [
-    {
-        question: "Combien y a t-il de triangles dans l'image ?",
-        imageURL: "./triangle_1.png",
-        options: [17, 18, 22, 15],
-        answer: 3
-    },
-    {
-        question: "Combien y a t-il de triangles dans l'image ?",
-        imageURL: "./triangle_2.png",
-        options: [17, 18, 22, 15],
-        answer: 3
-    },
-    {
-        question: "Combien y a t-il de triangles dans l'image ?",
-        imageURL: "./triangle_3.png",
-        options: [17, 18, 22, 15],
-        answer: 3
-    }
-]
+{
+    question: `Mon premier est le contraire de haut.
+Mon deuxième est le contraire de rapide.
+Mon troisième est le contraire de matin.
+Mon tout s’accroche aux branches des arbres.`,
+    imageURL: null,
+    options: ["Balançoire", "Horloge", "Parapluie", "Cerf-volant"],
+    answer: 0
+},
+{
+    question: `Mon premier est un animal qui mange des souris.
+Mon deuxième est un animal qui vit dans les égouts.
+Mon troisième est un chiffre entre un et cinq.
+Mon tout est ce que je suis en train de faire.`,
+    imageURL: null,
+    options: ["Charade", "Conversation", "Histoire", "Discussion"],
+    answer: 0
+},
+{
+    question: `Mon premier est au milieu de la figure.
+Mon deuxième est le contraire d’habillé.
+Mon troisième dirige les bateaux en mer la nuit.
+Mon tout est une fleur sur l’eau.`,
+    imageURL: null,
+    options: ["Tulipe", "Nénuphar", "Rose", "Lotus"],
+    answer: 1
+},
+{
+    question: `Mon premier est un métal précieux.
+Mon deuxième est un habitant des cieux.
+Mon tout est un fruit délicieux.`,
+    imageURL: null,
+    options: ["Orange", "Pêche", "Poire", "Mangue"],
+    answer: 0
+},
+{
+    question: `Mon premier est un musicien célèbre.
+Mon deuxième est une note de musique.
+Mon troisième est aussi une note de musique.
+Mon tout est un fromage italien.`,
+    imageURL: null,
+    options: ["Mozzarella", "Parmesan", "Ricotta", "Gorgonzola"],
+    answer: 0
+},
+{
+    question: `Mon premier est la première lettre de l’alphabet.
+Mon deuxième est utilisé par les prisonniers pour s’échapper dans les bandes-dessinées.
+Les fantômes font mon troisième dans les vieux châteaux.
+Mon quatrième est la meilleure carte d’un jeu de 52.
+Mon cinquième est une note de musique.
+Mon sixième est un pronom personnel indéfini.
+On doit généralement faire attention à mon tout.`,
+    imageURL: null,
+    options: ["Alimentation", "Attention", "Administration", "Application"],
+    answer: 0
+},
+{
+    question: `Mon premier est un ancien petit ami.
+Mon deuxième est une boisson qu’aiment les anglais.
+Mon troisième est un rongeur parfois mal aimé.
+Mon quatrième est un métal précieux.
+On fait mon cinquième lorsque l’on mange le soir.
+Mon sixième nous est indispensable pour vivre.
+Mon tout n’arrive pas souvent.`,
+    imageURL: null,
+    options: ["Extraordinaire", "Exceptionnel", "Incroyable", "Unique"],
+    answer: 0
+},
+{
+    question: `Mon premier est un synonyme de durée.
+Mon deuxième est l’enveloppe extérieure du corps.
+Mon troisième est un poisson au corps aplati.
+Mon quatrième est le mot "ré" sans accent.
+Mon tout est le contraire de permanent.`,
+    imageURL: null,
+    options: ["Temporaire", "Momentané", "Court", "Passager"],
+    answer: 0
+},
+{
+    question: `Mon premier est une boisson.
+Mon deuxième est une boisson.
+Mon troisième est une boisson.
+Mon tout est une boisson.`,
+    imageURL: null,
+    options: ["Café-eau-lait", "Jus de fruit", "Soda", "Sirop"],
+    answer: 0
+},
+{
+    question: `Mon premier est un nombre entier supérieur à 0 mais inférieur à deux.
+Les vaches passent leur temps dans mon deuxième.
+Mon troisième est une note de musique.
+Mon quatrième est un pronom indéfini.
+Mon tout peut être trompeuse.`,
+    imageURL: null,
+    options: ["Impression", "Illusion", "Observation", "Sensation"],
+    answer: 0
+}
+];
 
 let currentQuestions = [];
 let currentQuestionIndex = 0;
