@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="fr">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Image Challenge - Memory Quiz</title>
+    <link rel="stylesheet" href="./imageinfo.css" />
+  </head>
+  <body>
+    <main class="container">
+      <h1>Image Challenge</h1>
+      <p class="subtitle">Observe l'image, puis réponds à au moins 3 questions sur 5 pour avancer.</p>
+
+      <section class="card">
+        <div class="step-header">
+          <span id="stepLabel">Challenge 1</span>
+          <span id="statusBadge" class="badge">Prêt</span>
+        </div>
+
+        <!-- Phase 1: Image avec chrono -->
+        <div id="imagePhase" class="image-phase active">
+          <div class="go-button-wrapper">
+            <button id="goButton" class="go-button">GO</button>
+          </div>
+        </div>
+
+        <!-- Phase 2: Affichage de l'image avec chrono -->
+        <div id="timerPhase" class="timer-phase">
+          <div class="timer-display">
+            <span id="timerText">6</span>s
+          </div>
+          <img id="challengeImage" src="" alt="Challenge image" class="challenge-img" />
+        </div>
+
+        <!-- Phase 3: Quiz -->
+        <div id="quizPhase" class="quiz-phase">
+          <div id="questionsContainer"></div>
+          <button id="submitQuizButton" class="submit-button">Soumettre</button>
+        </div>
+
+        <!-- Phase 4: Résultat -->
+        <div id="resultPhase" class="result-phase">
+          <div id="resultContent"></div>
+          <button id="nextChallengeButton" class="next-button" style="display: none;">Prochain Challenge</button>
+          <button id="retryButton" class="retry-button" style="display: none;">Réessayer</button>
+        </div>
+      </section>
+    </main>
+
+    <script src="./imageinfo.js"></script>
+  </body>
+</html>
