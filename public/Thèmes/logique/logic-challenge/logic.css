@@ -5,7 +5,9 @@ body {
   display: flex;
   justify-content: center;
   align-items: center;
-  height: 100vh;
+  min-height: 100vh;
+  margin: 0;
+  padding: 24px 16px;
 }
 
 .card {
@@ -15,6 +17,13 @@ body {
   width: 90%;
   max-width: 700px;
   box-shadow: 0 10px 30px rgba(0,0,0,0.3);
+}
+
+.level {
+  text-align: center;
+  color: #93c5fd;
+  font-weight: bold;
+  margin-bottom: 10px;
 }
 
 h1 {
@@ -28,21 +37,21 @@ h1 {
   color: #cbd5e1;
 }
 
-.animals {
+.challenge-items {
   display: flex;
   justify-content: center;
   gap: 40px;
   margin-bottom: 25px;
 }
 
-.animal {
+.challenge-item {
   background: #334155;
   padding: 15px;
   border-radius: 12px;
   text-align: center;
 }
 
-.animal img {
+.challenge-item img {
   width: 80px;
   margin-bottom: 10px;
 }
@@ -89,4 +98,11 @@ button:hover {
   margin-top: 10px;
   text-align: center;
   color: #94a3b8;
+}
+
+@media (max-width: 640px) {
+  .challenge-items,
+  .form-group {
+    flex-direction: column;
+  }
 }

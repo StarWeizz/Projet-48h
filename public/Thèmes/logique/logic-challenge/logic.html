@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Defi logique</title>
+  <link rel="stylesheet" href="./logic.css" />
+</head>
+<body>
+  <div class="card">
+    <p class="level" id="level"></p>
+    <h1>Defis de logique</h1>
+
+    <p class="description" id="question-text"></p>
+
+    <div class="challenge-items">
+      <div class="challenge-item">
+        <img id="item-1-image" src="" alt="" />
+        <h2 id="item-1-name"></h2>
+        <p id="item-1-detail"></p>
+      </div>
+
+      <div class="challenge-item">
+        <img id="item-2-image" src="" alt="" />
+        <h2 id="item-2-name"></h2>
+        <p id="item-2-detail"></p>
+      </div>
+    </div>
+
+    <div class="form-group">
+      <div class="input-box">
+        <label id="label-1" for="answer-1"></label>
+        <input type="number" id="answer-1" min="0" />
+      </div>
+
+      <div class="input-box">
+        <label id="label-2" for="answer-2"></label>
+        <input type="number" id="answer-2" min="0" />
+      </div>
+    </div>
+
+    <button id="validate-btn" type="button">Valider</button>
+
+    <p id="result"></p>
+    <p class="hint" id="hint"></p>
+  </div>
+
+  <script src="./logic.js"></script>
+</body>
+</html>
