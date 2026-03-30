@@ -158,3 +158,9 @@ La collection joueur utilise explicitement `Players` pour correspondre a ta base
 - proteger les endpoints d'administration si la creation de contenu passe par l'API
 - ajouter un systeme de tentatives, d'indices et de penalites de score
 s
+
+## Page de validation API
+
+Une page de demonstration est disponible sur http://localhost:3000/demo.
+Elle sert a verifier qu'un defi statique peut dialoguer avec l'API, creer ou retrouver un joueur, puis valider une reponse.
+
