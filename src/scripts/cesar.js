@@ -1,15 +1,25 @@
-const userDecallage = 14;
+const normalizeAnswer = require("../utils/normalizeAnswer");
+
+const userDecallage = [19, 7, 4];
 
 const challenges = [
   {
-    code: "Ov ciowg eiobr asas",
-    resultat: "Ah ouais quand meme",
-    decallage: 14,
+    code: "Wtgl ex whftbgx wn wxoxehiixfxgm pxu be xlm bfihkmtgm w bgmxzkxk et vruxklxvnkbmx wtgl mhnl exl ikhcxml",
+    resultat:
+      "Dans le domaine du developpement web il est important d integrer la cybersecurite dans tous les projets",
+    decallage: 19,
   },
   {
-    code: "d gtbwul xgfulagffw snwu dw ugvw",
-    resultat: "l object fonctionne avec le code",
-    decallage: 18,
+    code: "Slz xbpg lu jfilyzljbypal hpklua h ylumvyjly slz jvuuhpzzhujlz klz bapspzhalbyz khuz sl kvthpul kb klclsvwwltlua dli",
+    resultat:
+      "Les quiz en cybersecurite aident à renforcer les connaissances des utilisateurs dans le domaine du developpement web",
+    decallage: 7,
+  },
+  {
+    code: "Pe gcfivwigyvmxi ix pe kiwxmsr hi p mrjsvqexmsr wsrx hiw ipiqirxw gvmxmuyiw herw pi hizipsttiqirx aif viywwm ix wigyvmwi",
+    resultat:
+      "La cybersecurite et la gestion de l information sont des elements critiques dans le developpement web réussi et securise",
+    decallage: 4,
   },
 ];
 
@@ -43,14 +53,23 @@ function decodeText(text, decallage) {
 }
 
 function checkResult(decoded, expected) {
-  return decoded === expected ? "Win" : "Defaite";
+  return normalizeAnswer(decoded) === normalizeAnswer(expected)
+    ? "Win"
+    : "Defaite";
 }
 
-function decodeChallenge(challenge, fallbackDecallage) {
+function decodeChallenge(challenge, userDecallageByIndex) {
   const decallage =
-    typeof challenge.decallage === "number"
-      ? challenge.decallage
-      : fallbackDecallage;
+    typeof userDecallageByIndex === "number"
+      ? userDecallageByIndex
+      : challenge.decallage;
+
+  if (typeof decallage !== "number") {
+    console.log("Defaite");
+    console.log("Décalage manquant pour ce challenge");
+    return;
+  }
+
   const decoded = decodeText(challenge.code, decallage);
   const status = checkResult(decoded, challenge.resultat);
 
@@ -58,6 +77,6 @@ function decodeChallenge(challenge, fallbackDecallage) {
   console.log(`Décalage ${decallage} → ${decoded}`);
 }
 
-for (const challenge of challenges) {
-  decodeChallenge(challenge, userDecallage);
+for (const [index, challenge] of challenges.entries()) {
+  decodeChallenge(challenge, userDecallage[index]);
 }
