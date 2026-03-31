@@ -24,7 +24,7 @@ Aucun framework frontend (pas de React, Vue, etc.) — tout est géré en DOM na
 
 ## Thèmes et défis
 
-### Logique *(facile)*
+### Logique
 Entraîne la rigueur et le raisonnement analytique.
 
 | Défi | Description |
@@ -33,7 +33,7 @@ Entraîne la rigueur et le raisonnement analytique.
 | Aide le fermier | Problème d'algèbre simple (systèmes d'équations animaux/pattes) avec niveaux progressifs |
 | Charade | Résoudre une charade en plusieurs parties, chaque ligne étant un indice |
 
-### Mémoire *(moyen)*
+### Mémoire
 Teste la capacité à retenir et restituer de l'information.
 
 | Défi | Description |
@@ -42,7 +42,7 @@ Teste la capacité à retenir et restituer de l'information.
 | Image à retenir | Retenir une image et répondre à des questions dessus |
 | Trouve l'intrus | Identifier l'élément qui ne correspond pas parmi un ensemble d'images |
 
-### Décryptage *(difficile)*
+### Décryptage
 Met à l'épreuve la logique et la culture des codes et chiffres.
 
 | Défi | Description |

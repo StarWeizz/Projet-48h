@@ -2,20 +2,20 @@ const challenges = [
     {
         question: "Combien y a t-il de triangles dans l'image ?",
         imageURL: "./triangle_1.png",
-        options: [17, 18, 22, 15],
+        options: [17, 18, 23, 15],
         answer: 3
     },
     {
         question: "Combien y a t-il de triangles dans l'image ?",
         imageURL: "./triangle_2.png",
-        options: [17, 18, 22, 15],
-        answer: 3
+        options: [19, 17, 20, 22],
+        answer: 2
     },
     {
         question: "Combien y a t-il de triangles dans l'image ?",
         imageURL: "./triangle_3.png",
-        options: [17, 18, 22, 15],
-        answer: 3
+        options: [15, 16, 17, 18, 19, 20, 21],
+        answer: 2
     }
 ]
 
