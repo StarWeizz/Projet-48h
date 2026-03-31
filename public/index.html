@@ -7,7 +7,7 @@
 	<link rel="stylesheet" href="assets/css/main.css" />
 	<noscript><link rel="stylesheet" href="assets/css/noscript.css" /></noscript>
 </head>
-
+<body class="is-preload">
 
 	<!-- Wrapper -->
 <div id="wrapper" class="fade-in">
@@ -33,6 +33,8 @@
 			<li><a href="logic.html"> logique </a> </li>
 			<li><a href="memoire.html">memoire</a></li>
 			<li><a href="decryptage.html">decryptage</a></li>
+            <li><a href="#" id="pseudo-nav-btn">👤 Mon pseudo</a></li>
+            <li><a href="#" id="scores-nav-btn">🏆 Scores</a></li>
 		</ul>
 	</nav>
 
@@ -82,6 +84,19 @@
 			</article>
 		</section>
 
+		<!-- Scoreboard -->
+		<section class="posts" id="scoreboard-section">
+			<article style="grid-column:1/-1;">
+				<header class="major">
+					<h2>Classement</h2>
+					<p>Les meilleurs scores par défi</p>
+				</header>
+				<div id="global-scores-container">
+					<p style="color:#888;font-style:italic;">Chargement des scores...</p>
+				</div>
+			</article>
+		</section>
+
 	</div>
 	<!-- Footer -->
 	<footer id="footer">
@@ -109,5 +124,106 @@
 	<script src="assets/js/util.js"></script>
 	<script src="assets/js/main.js"></script>
 
+	<!-- Pseudo Modal -->
+	<div id="pseudo-modal" class="modal" style="display:none;">
+		<div class="modal-content" style="max-width:420px;margin:15% auto;padding:2rem;position:relative;">
+			<span class="close" id="pseudo-modal-close" style="position:absolute;top:1rem;right:1.2rem;font-size:1.5rem;cursor:pointer;">&times;</span>
+			<h2 style="margin-top:0;">Votre pseudo</h2>
+			<p style="color:#555;">Entrez votre pseudo pour que vos scores soient enregistrés.</p>
+			<input type="text" id="pseudo-input" placeholder="Ex : SuperJoueur42" maxlength="30"
+				style="width:100%;padding:0.6rem 1rem;border:1px solid #ccc;border-radius:4px;font-size:1rem;box-sizing:border-box;margin-bottom:1rem;" />
+			<button id="pseudo-save-btn"
+				style="background:#ff4757;color:#fff;border:none;padding:0.6rem 1.5rem;border-radius:4px;font-size:1rem;cursor:pointer;width:100%;">
+				Valider
+			</button>
+		</div>
+	</div>
+
+	<!-- Scoreboard Modal -->
+	<div id="scoreboard-modal" class="modal" style="display:none;">
+		<div class="modal-content" style="max-width:600px;margin:8% auto;padding:2rem;position:relative;max-height:80vh;overflow-y:auto;">
+			<span class="close" id="scoreboard-modal-close" style="position:absolute;top:1rem;right:1.2rem;font-size:1.5rem;cursor:pointer;">&times;</span>
+			<h2 style="margin-top:0;">🏆 Classement général</h2>
+			<div id="scoreboard-modal-content">
+				<p style="color:#888;font-style:italic;">Chargement...</p>
+			</div>
+		</div>
+	</div>
+
+	<!-- Scripts scoreboard -->
+	<script src="public/js/scoreboard.js"></script>
+	<script>
+		// Pseudo
+		var pseudoModal = document.getElementById('pseudo-modal');
+		var pseudoInput = document.getElementById('pseudo-input');
+		var pseudoNavBtn = document.getElementById('pseudo-nav-btn');
+		var scoresNavBtn = document.getElementById('scores-nav-btn');
+		var scoreboardModal = document.getElementById('scoreboard-modal');
+
+		function openPseudoModal() {
+			pseudoInput.value = Quiz48h.getPseudo();
+			pseudoModal.style.display = 'block';
+			setTimeout(function() { pseudoInput.focus(); }, 100);
+		}
+
+		document.getElementById('pseudo-save-btn').addEventListener('click', function () {
+			var val = pseudoInput.value.trim();
+			if (!val) return;
+			Quiz48h.setPseudo(val);
+			pseudoModal.style.display = 'none';
+			updatePseudoBtn();
+		});
+		pseudoInput.addEventListener('keydown', function(e) {
+			if (e.key === 'Enter') document.getElementById('pseudo-save-btn').click();
+		});
+		document.getElementById('pseudo-modal-close').addEventListener('click', function () {
+			pseudoModal.style.display = 'none';
+		});
+		pseudoNavBtn.addEventListener('click', function (e) {
+			e.preventDefault();
+			openPseudoModal();
+		});
+
+		// Scoreboard
+		function openScoreboardModal() {
+			scoreboardModal.style.display = 'block';
+			var container = document.getElementById('scoreboard-modal-content');
+			container.innerHTML = '<p style="color:#888;font-style:italic;">Chargement...</p>';
+			Quiz48h.getAllScores().then(function (scores) {
+				Quiz48h.renderAllScoresGrouped(scores, container);
+			});
+		}
+		scoresNavBtn.addEventListener('click', function (e) {
+			e.preventDefault();
+			openScoreboardModal();
+		});
+		document.getElementById('scoreboard-modal-close').addEventListener('click', function () {
+			scoreboardModal.style.display = 'none';
+		});
+		window.addEventListener('click', function (e) {
+			if (e.target === pseudoModal) pseudoModal.style.display = 'none';
+			if (e.target === scoreboardModal) scoreboardModal.style.display = 'none';
+		});
+
+		// Update pseudo button label
+		function updatePseudoBtn() {
+			var p = Quiz48h.getPseudo();
+			pseudoNavBtn.textContent = p ? ('👤 ' + p) : '👤 Mon pseudo';
+		}
+		updatePseudoBtn();
+
+		// Auto-show pseudo modal on first visit
+		if (!Quiz48h.getPseudo()) {
+			openPseudoModal();
+		}
+
+		// Load global scoreboard section
+		var globalContainer = document.getElementById('global-scores-container');
+		if (globalContainer) {
+			Quiz48h.getAllScores().then(function (scores) {
+				Quiz48h.renderAllScoresGrouped(scores, globalContainer);
+			});
+		}
+	</script>
 </body>
 </html>
