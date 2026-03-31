@@ -22,7 +22,7 @@ Le projet propose plusieurs themes de mini-defis. Les pages d'accueil et de them
 |   |-- assets
 |   |-- css
 |   |-- images
-|   |-- Thèmes
+|   |-- Themes
 |   |-- index.html
 |   |-- logic.html
 |   |-- memoire.html
@@ -84,11 +84,11 @@ npm run dev
 - `/themes/logique` : page du theme logique
 - `/themes/memoire` : page du theme memoire
 - `/themes/decryptage` : page du theme decryptage
-- `/admin` : page de demonstration / administration API
+- `/admin` : page d administration API servie depuis `public/admin/admin.html`
 
 ### Defis statiques
 
-Les defis sont servis depuis `public/Thèmes` via le prefixe `/challenges`.
+Les defis sont servis depuis `public/Themes` via le prefixe `/challenges`.
 
 Exemples :
 
@@ -146,8 +146,11 @@ Exemples :
 }
 ```
 
-## Notes ==
+## Notes
 
 - Les pages d'accueil et de themes doivent vivre dans `public/` si elles utilisent `assets/` et `images/` en relatif.
-- Les defis individuels restent dans `public/Thèmes/<theme>/<defi>/`.
+- Les defis individuels restent dans `public/Themes/<theme>/<defi>/`.
 - Pour ajouter un nouveau defi, il suffit de placer son HTML/CSS/JS dans le bon dossier et de le lier depuis la page du theme correspondant.
+
+
+

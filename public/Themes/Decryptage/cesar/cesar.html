@@ -3,28 +3,27 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Exercice César - Décryptage</title>
+    <title>Exercice Cesar - Decryptage</title>
     <link rel="stylesheet" href="./cesar.css" />
   </head>
   <body>
     <main class="container">
-      <h1>Exercice de Décryptage César</h1>
+      <h1>Exercice de Decryptage Cesar</h1>
       <p class="subtitle">
-        Trouve le bon décalage pour chaque étape. Tu avances uniquement quand tu
-        fais <strong>Win</strong>.
+        Trouve le bon decalage pour chaque etape afin de decoder les messages.
       </p>
 
       <section class="card" aria-live="polite">
         <div class="step-header">
-          <span id="stepLabel">Étape 1 / 3</span>
+          <span id="stepLabel">Etape 1 / 3</span>
           <span id="statusBadge" class="badge">En cours</span>
         </div>
 
-        <h2>Code à décoder</h2>
+        <h2>Code a decoder</h2>
         <p id="codeText" class="code-text"></p>
 
         <form id="decalageForm" class="form">
-          <label for="decalageInput">Décalage</label>
+          <label for="decalageInput">Decalage</label>
           <input
             id="decalageInput"
             name="decalage"
@@ -34,12 +33,12 @@
             placeholder="Ex: 7"
             required
           />
-          <button type="submit">Décoder</button>
+          <button type="submit">Decoder</button>
         </form>
 
         <div class="result-zone">
-          <p><strong>Résultat :</strong> <span id="resultText">—</span></p>
-          <p><strong>Statut :</strong> <span id="resultStatus">—</span></p>
+          <p><strong>Resultat :</strong> <span id="resultText">-</span></p>
+          <p><strong>Statut :</strong> <span id="resultStatus">-</span></p>
           <p id="hintText" class="hint"></p>
         </div>
       </section>
