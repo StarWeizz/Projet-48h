@@ -71,8 +71,11 @@ const challenges = [
 ];
 
 let currentChallengeIndex = 0;
+let score = 0;
+const SCORE_PER_CORRECT_ANSWER = 100;
 
 const levelElement = document.getElementById("level");
+const scoreElement = document.getElementById("score");
 const questionTextElement = document.getElementById("question-text");
 const item1ImageElement = document.getElementById("item-1-image");
 const item2ImageElement = document.getElementById("item-2-image");
@@ -87,6 +90,10 @@ const answer2Element = document.getElementById("answer-2");
 const resultElement = document.getElementById("result");
 const hintElement = document.getElementById("hint");
 const validateButton = document.getElementById("validate-btn");
+
+function updateScoreDisplay() {
+  scoreElement.textContent = `Score : ${score} pts`;
+}
 
 function renderChallenge() {
   const challenge = challenges[currentChallengeIndex];
@@ -116,6 +123,7 @@ function renderChallenge() {
   answer2Element.placeholder = "Entrez un nombre";
   resultElement.textContent = "";
   validateButton.disabled = false;
+  updateScoreDisplay();
 }
 
 function showResult(message, color) {
@@ -129,11 +137,12 @@ function goToNextChallenge() {
   if (currentChallengeIndex >= challenges.length) {
     levelElement.textContent = "Tous les niveaux sont termines";
     questionTextElement.textContent =
-      "Bravo ! Tu as reussi les 3 defis du plus facile au plus difficile.";
+      `Bravo ! Tu as reussi les 3 defis du plus facile au plus difficile. Score final : ${score} pts.`;
     hintElement.textContent = "Tu peux recharger la page pour recommencer.";
     document.querySelector(".challenge-items").style.display = "none";
     document.querySelector(".form-group").style.display = "none";
     validateButton.style.display = "none";
+    updateScoreDisplay();
     showResult("Serie completee avec succes !", "green");
     return;
   }
@@ -176,6 +185,8 @@ function checkAnswer() {
   }
 
   validateButton.disabled = true;
+  score += SCORE_PER_CORRECT_ANSWER;
+  updateScoreDisplay();
   showResult("Bonne reponse ! Passage a la question suivante...", "green");
 
   setTimeout(() => {
