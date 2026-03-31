@@ -4779,3 +4779,8 @@ ul {
 #footer h2 {
 	padding: 30px 10px;
 }
+
+.regle {
+	list-style: none;
+	padding-left: 0; /* enlève le décalage à gauche */
+}
