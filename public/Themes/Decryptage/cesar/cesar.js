@@ -26,6 +26,7 @@ const decalageInput = document.getElementById("decalageInput");
 const resultText = document.getElementById("resultText");
 const resultStatus = document.getElementById("resultStatus");
 const hintText = document.getElementById("hintText");
+const submitButton = decalageForm.querySelector("button");
 
 function normalizeAnswer(value) {
   return String(value || "")
@@ -68,22 +69,23 @@ function decodeText(text, decallage) {
 function renderStep() {
   const challenge = challenges[currentStep];
 
-  stepLabel.textContent = `Étape ${currentStep + 1} / ${challenges.length}`;
+  stepLabel.textContent = `Etape ${currentStep + 1} / ${challenges.length}`;
   codeText.textContent = challenge.code;
-  resultText.textContent = "—";
-  resultStatus.textContent = "—";
-  hintText.textContent =
-    "Trouve le bon décalage pour passer à l'étape suivante.";
+  resultText.textContent = "-";
+  resultStatus.textContent = "-";
+  hintText.textContent = "Trouve le bon decalage pour passer a l'etape suivante.";
   statusBadge.textContent = "En cours";
   decalageInput.value = "";
   decalageInput.focus();
 }
 
 function finishExercise() {
-  statusBadge.textContent = "Terminé";
-  codeText.textContent = "Bravo, tu as validé les 3 étapes du décryptage.";
-  hintText.textContent = "Tous les messages ont été décodés avec succès.";
-  decalageForm.querySelector("button").disabled = true;
+  statusBadge.textContent = "Termine";
+  codeText.textContent = "Bravo, tu as valide les 3 etapes du decryptage.";
+  resultText.textContent = challenges[challenges.length - 1].resultat;
+  resultStatus.textContent = "Victoire";
+  hintText.textContent = "Tous les messages ont ete decodes avec succes.";
+  submitButton.disabled = true;
   decalageInput.disabled = true;
 }
 
@@ -95,16 +97,15 @@ decalageForm.addEventListener("submit", (event) => {
 
   if (Number.isNaN(userShift) || userShift < 0 || userShift > 25) {
     resultStatus.textContent = "Defaite";
-    hintText.textContent = "Entre un décalage valide entre 0 et 25.";
+    hintText.textContent = "Entre un decalage valide entre 0 et 25.";
     return;
   }
 
   const decoded = decodeText(challenge.code, userShift);
-  const isWin =
-    normalizeAnswer(decoded) === normalizeAnswer(challenge.resultat);
+  const isWin = normalizeAnswer(decoded) === normalizeAnswer(challenge.resultat);
 
   resultText.textContent = decoded;
-  resultStatus.textContent = isWin ? "Win" : "Defaite";
+  resultStatus.textContent = isWin ? "Victoire" : "Defaite";
 
   if (isWin) {
     if (currentStep === challenges.length - 1) {
@@ -112,7 +113,7 @@ decalageForm.addEventListener("submit", (event) => {
       return;
     }
 
-    hintText.textContent = "Win ! Passage à l'étape suivante...";
+    hintText.textContent = "Victoire ! Passage a l'etape suivante...";
     currentStep += 1;
 
     setTimeout(() => {
@@ -121,7 +122,7 @@ decalageForm.addEventListener("submit", (event) => {
     return;
   }
 
-  hintText.textContent = "Defaite : continue à chercher le bon décalage.";
+  hintText.textContent = "Defaite : continue a chercher le bon decalage.";
 });
 
 renderStep();

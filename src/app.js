@@ -9,7 +9,7 @@ const errorHandler = require("./middlewares/errorHandler");
 
 const app = express();
 const publicDirectory = path.join(__dirname, "..", "public");
-const themesDirectory = path.join(publicDirectory, "Thèmes");
+const themesDirectory = path.join(publicDirectory, "Themes");
 const adminPath = "/challenges/exemple/defiexemple/defiexemple.html";
 
 const challengeRoutes = {
