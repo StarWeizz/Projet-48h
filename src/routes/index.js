@@ -10,6 +10,7 @@ router.get("/", (req, res) => {
             "/api/challenges",
             "/api/players",
             "/api/players/leaderboard",
+            "/api/scores",
         ],
     });
 });
@@ -17,5 +18,6 @@ router.get("/", (req, res) => {
 router.use("/themes", require("./themeRoutes"));
 router.use("/challenges", require("./challengeRoutes"));
 router.use("/players", require("./playerRoutes"));
+router.use("/scores", require("./scoreRoutes"));
 
 module.exports = router;
