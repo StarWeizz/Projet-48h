@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Retenir l'image - Mini jeu memoire</title>
+    <title>Retenir l'image - Mini-jeu mémoire</title>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:wght@400;500;700;800&family=Space+Mono:wght@400;700&display=swap" rel="stylesheet">
@@ -22,20 +22,20 @@
         </div>
     </nav>
     <main class="container-principal">
-        <section class="intro-card" id="intro-card" aria-label="Ecran d'accueil du quiz memoire">
+        <section class="intro-card" id="intro-card" aria-label="Écran d'accueil du quiz mémoire">
             <p class="intro-logo">QUIZ</p>
-            <h1>Jeu de Memoire Visuelle</h1>
+            <h1>Jeu de mémoire visuelle</h1>
             <p class="intro-description">
-                Testez votre memoire. Observez attentivement les images pendant quelques secondes,
-                puis repondez aux questions sur les details que vous avez vus.
+                Testez votre mémoire. Observez attentivement les images pendant quelques secondes,
+                puis répondez aux questions sur les détails que vous avez vus.
             </p>
 
             <div class="intro-regles">
                 <h2>Comment jouer :</h2>
                 <ol>
                     <li>Une image s'affiche pendant quelques secondes.</li>
-                    <li>Memorisez un maximum de details: couleurs, objets et positions.</li>
-                    <li>Repondez aux questions, une par une.</li>
+                    <li>Mémorisez un maximum de détails : couleurs, objets et positions.</li>
+                    <li>Répondez aux questions, une par une.</li>
                     <li>Cumulez des points pour faire le meilleur score.</li>
                 </ol>
             </div>
@@ -43,7 +43,7 @@
             <button class="btn-intro" id="btn-commencer" type="button">Commencer le quiz</button>
         </section>
 
-        <section class="jeu-card is-hidden" id="jeu-card" aria-label="Interface du mini jeu memoire">
+        <section class="jeu-card is-hidden" id="jeu-card" aria-label="Interface du mini-jeu mémoire">
             <header class="jeu-topbar">
                 <p class="badge-etape" id="badge-etape">Manche 01/05</p>
                 <div class="meta-groupe">
@@ -52,24 +52,24 @@
             </header>
 
             <div class="zone-jeu" id="zone-jeu">
-                <article class="image-panel" aria-label="Image a memoriser">
-                    <p class="image-label" id="image-label">Observe et memorise</p>
-                    <div class="image-scene" id="image-scene" role="img" aria-label="Scene du mini jeu">
+                <article class="image-panel" aria-label="Image à mémoriser">
+                    <p class="image-label" id="image-label">Observe et mémorise</p>
+                    <div class="image-scene" id="image-scene" role="img" aria-label="Scène du mini-jeu">
                     </div>
                     <div class="barre-compte-rebours" aria-hidden="true">
                         <span id="barre-temps"></span>
                     </div>
                 </article>
 
-                <aside class="questions-panel" aria-label="Questions de memoire">
+                <aside class="questions-panel" aria-label="Questions de mémoire">
                     <h1>Qu'as-tu vu ?</h1>
-                    <p class="accroche" id="accroche">Reponds vite: couleur, presence des objets et petits details.</p>
+                    <p class="accroche" id="accroche">Réponds vite : couleur, présence des objets et petits détails.</p>
 
                     <div class="question-list" id="question-list"></div>
 
                     <footer class="actions">
                         <button class="btn btn-secondaire" id="btn-suivant" type="button">Image suivante</button>
-                        <button class="btn btn-primaire" id="btn-valider" type="button">Valider mes reponses</button>
+                        <button class="btn btn-primaire" id="btn-valider" type="button">Valider mes réponses</button>
                     </footer>
                 </aside>
             </div>

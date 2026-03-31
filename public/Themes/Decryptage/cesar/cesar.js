@@ -69,22 +69,22 @@ function decodeText(text, decallage) {
 function renderStep() {
   const challenge = challenges[currentStep];
 
-  stepLabel.textContent = `Etape ${currentStep + 1} / ${challenges.length}`;
+  stepLabel.textContent = `Étape ${currentStep + 1} / ${challenges.length}`;
   codeText.textContent = challenge.code;
   resultText.textContent = "-";
   resultStatus.textContent = "-";
-  hintText.textContent = "Trouve le bon decalage pour passer a l'etape suivante.";
+  hintText.textContent = "Trouve le bon décalage pour passer à l'étape suivante.";
   statusBadge.textContent = "En cours";
   decalageInput.value = "";
   decalageInput.focus();
 }
 
 function finishExercise() {
-  statusBadge.textContent = "Termine";
-  codeText.textContent = "Bravo, tu as valide les 3 etapes du decryptage.";
+  statusBadge.textContent = "Terminé";
+  codeText.textContent = "Bravo, tu as validé les 3 étapes du décryptage.";
   resultText.textContent = challenges[challenges.length - 1].resultat;
   resultStatus.textContent = "Victoire";
-  hintText.textContent = "Tous les messages ont ete decodes avec succes.";
+  hintText.textContent = "Tous les messages ont été décodés avec succès.";
   submitButton.disabled = true;
   decalageInput.disabled = true;
 
@@ -107,8 +107,8 @@ decalageForm.addEventListener("submit", (event) => {
   const userShift = Number(decalageInput.value);
 
   if (Number.isNaN(userShift) || userShift < 0 || userShift > 25) {
-    resultStatus.textContent = "Defaite";
-    hintText.textContent = "Entre un decalage valide entre 0 et 25.";
+    resultStatus.textContent = "Défaite";
+    hintText.textContent = "Entre un décalage valide entre 0 et 25.";
     return;
   }
 
@@ -116,7 +116,7 @@ decalageForm.addEventListener("submit", (event) => {
   const isWin = normalizeAnswer(decoded) === normalizeAnswer(challenge.resultat);
 
   resultText.textContent = decoded;
-  resultStatus.textContent = isWin ? "Victoire" : "Defaite";
+  resultStatus.textContent = isWin ? "Victoire" : "Défaite";
 
   if (isWin) {
     if (currentStep === challenges.length - 1) {
@@ -124,7 +124,7 @@ decalageForm.addEventListener("submit", (event) => {
       return;
     }
 
-    hintText.textContent = "Victoire ! Passage a l'etape suivante...";
+    hintText.textContent = "Victoire ! Passage à l'étape suivante...";
     currentStep += 1;
 
     setTimeout(() => {
@@ -133,7 +133,7 @@ decalageForm.addEventListener("submit", (event) => {
     return;
   }
 
-  hintText.textContent = "Defaite : continue a chercher le bon decalage.";
+  hintText.textContent = "Défaite : continue à chercher le bon décalage.";
 });
 
 renderStep();

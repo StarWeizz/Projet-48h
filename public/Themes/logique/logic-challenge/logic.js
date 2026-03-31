@@ -187,7 +187,7 @@ function checkAnswer() {
 
   if (!isCorrect) {
     validateButton.disabled = true;
-    showResult("Mauvaise reponse.", "red");
+    showResult("Mauvaise réponse.", "red");
 
     setTimeout(() => {
       goToNextChallenge();
@@ -198,7 +198,7 @@ function checkAnswer() {
   validateButton.disabled = true;
   score += SCORE_PER_CORRECT_ANSWER;
   updateScoreDisplay();
-  showResult("Bonne reponse ! Passage a la question suivante...", "green");
+  showResult("Bonne réponse ! Passage à la question suivante...", "green");
 
   setTimeout(() => {
     goToNextChallenge();
