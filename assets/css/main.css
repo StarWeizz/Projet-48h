@@ -4751,6 +4751,7 @@ input, select, textarea {
 	padding: 0;
 	margin: 0 auto;
 	max-width: 800px;
+
 }
 
 	/* Items */
@@ -4760,6 +4761,7 @@ input, select, textarea {
 		text-align: center;
 		border-radius: 8px;
 		transition: transform 0.2s ease;
+		margin-bottom: 50px;
 	}
 
 		.grid-list li:hover {
