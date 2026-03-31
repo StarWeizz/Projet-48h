@@ -29,6 +29,8 @@
                 <li class="active"><a href="logic.html"> logique </a> </li>
                 <li><a href="memoire.html">memoire</a></li>
                 <li><a href="decryptage.html">decryptage</a></li>
+                <li><a href="#" id="pseudo-nav-btn">👤 Mon pseudo</a></li>
+                <li><a href="#" id="scores-nav-btn">🏆 Scores</a></li>
             </ul>
         </nav>
 
@@ -41,7 +43,8 @@
                 <article class="defi"
                          data-title="Combien de signes ?"
 data-text="Observe attentivement l’image. Certaines formes se répètent, d’autres se cachent presque parfaitement. À toi de compter chaque occurrence sans te tromper."
-                         data-link="jeu1.html">
+                         data-link="jeu1.html"
+                         data-slug="shapes">
                     <header>
                         <h2>Combien de signes y a-t-il ?</h2>
                     </header>
@@ -52,7 +55,8 @@ data-text="Observe attentivement l’image. Certaines formes se répètent, d’
                 <article class="defi"
                          data-title="Aide le fermier"
 data-text="Le fermier est débordé et a besoin d’aide ! Analyse la scène et compte avec précision tous les animaux présents dans la ferme."
-                         data-link="jeu2.html">
+                         data-link="jeu2.html"
+                         data-slug="ferme">
                     <header>
                         <h2>Aide fermier !</h2>
                     </header>
@@ -63,7 +67,8 @@ data-text="Le fermier est débordé et a besoin d’aide ! Analyse la scène et 
                 <article class="defi"
                          data-title="Défi mystère"
                          data-text="Un défi surprise t'attend..."
-                         data-link="jeu3.html">
+                         data-link="jeu3.html"
+                         data-slug="mystery-logic">
                     <header>
                         <h2>Placeholder</h2>
                     </header>
@@ -84,6 +89,9 @@ data-text="Le fermier est débordé et a besoin d’aide ! Analyse la scène et 
 
                 <!-- Bouton lancer -->
                 <button id="start-btn">Lancer le défi</button>
+                <hr style="border:none;border-top:1px solid #eee;margin:1.2rem 0;">
+                <h3 style="margin:0 0 0.6rem;font-size:1rem;">Meilleurs scores</h3>
+                <div id="modal-scores-list"><p style="color:#888;font-style:italic;margin:0;">Chargement...</p></div>
             </div>
         </div>
 
@@ -131,6 +139,108 @@ data-text="Le fermier est débordé et a besoin d’aide ! Analyse la scène et 
         modal.style.display = "none";
         }
         };
+    </script>
+
+    <!-- Pseudo Modal -->
+    <div id="pseudo-modal" class="modal" style="display:none;">
+        <div class="modal-content" style="max-width:420px;margin:15% auto;padding:2rem;position:relative;">
+            <span class="close" id="pseudo-modal-close" style="position:absolute;top:1rem;right:1.2rem;font-size:1.5rem;cursor:pointer;">&times;</span>
+            <h2 style="margin-top:0;">Votre pseudo</h2>
+            <p style="color:#555;">Entrez votre pseudo pour que vos scores soient enregistrés.</p>
+            <input type="text" id="pseudo-input" placeholder="Ex : SuperJoueur42" maxlength="30"
+                style="width:100%;padding:0.6rem 1rem;border:1px solid #ccc;border-radius:4px;font-size:1rem;box-sizing:border-box;margin-bottom:1rem;" />
+            <button id="pseudo-save-btn"
+                style="background:#ff4757;color:#fff;border:none;padding:0.6rem 1.5rem;border-radius:4px;font-size:1rem;cursor:pointer;width:100%;">
+                Valider
+            </button>
+        </div>
+    </div>
+
+    <!-- Scoreboard Modal -->
+    <div id="scoreboard-modal" class="modal" style="display:none;">
+        <div class="modal-content" style="max-width:600px;margin:8% auto;padding:2rem;position:relative;max-height:80vh;overflow-y:auto;">
+            <span class="close" id="scoreboard-modal-close" style="position:absolute;top:1rem;right:1.2rem;font-size:1.5rem;cursor:pointer;">&times;</span>
+            <h2 style="margin-top:0;">🏆 Classement général</h2>
+            <div id="scoreboard-modal-content">
+                <p style="color:#888;font-style:italic;">Chargement...</p>
+            </div>
+        </div>
+    </div>
+
+    <script src="public/js/scoreboard.js"></script>
+    <script>
+        var pseudoModal = document.getElementById('pseudo-modal');
+        var pseudoInput = document.getElementById('pseudo-input');
+        var pseudoNavBtn = document.getElementById('pseudo-nav-btn');
+        var scoresNavBtn = document.getElementById('scores-nav-btn');
+        var scoreboardModal = document.getElementById('scoreboard-modal');
+        var modalScoresList = document.getElementById('modal-scores-list');
+
+        function openPseudoModal() {
+            pseudoInput.value = Quiz48h.getPseudo();
+            pseudoModal.style.display = 'block';
+            setTimeout(function() { pseudoInput.focus(); }, 100);
+        }
+
+        document.getElementById('pseudo-save-btn').addEventListener('click', function () {
+            var val = pseudoInput.value.trim();
+            if (!val) return;
+            Quiz48h.setPseudo(val);
+            pseudoModal.style.display = 'none';
+            updatePseudoBtn();
+        });
+        pseudoInput.addEventListener('keydown', function(e) {
+            if (e.key === 'Enter') document.getElementById('pseudo-save-btn').click();
+        });
+        document.getElementById('pseudo-modal-close').addEventListener('click', function () {
+            pseudoModal.style.display = 'none';
+        });
+        pseudoNavBtn.addEventListener('click', function (e) {
+            e.preventDefault();
+            openPseudoModal();
+        });
+
+        function openScoreboardModal() {
+            scoreboardModal.style.display = 'block';
+            var container = document.getElementById('scoreboard-modal-content');
+            container.innerHTML = '<p style="color:#888;font-style:italic;">Chargement...</p>';
+            Quiz48h.getAllScores().then(function (scores) {
+                Quiz48h.renderAllScoresGrouped(scores, container);
+            });
+        }
+        scoresNavBtn.addEventListener('click', function (e) {
+            e.preventDefault();
+            openScoreboardModal();
+        });
+        document.getElementById('scoreboard-modal-close').addEventListener('click', function () {
+            scoreboardModal.style.display = 'none';
+        });
+
+        function updatePseudoBtn() {
+            var p = Quiz48h.getPseudo();
+            pseudoNavBtn.textContent = p ? ('👤 ' + p) : '👤 Mon pseudo';
+        }
+        updatePseudoBtn();
+
+        // Extend existing modal JS to also load scores
+        var _origDefis = document.querySelectorAll('.defi');
+        var _currentSlug = '';
+        _origDefis.forEach(function(defi) {
+            defi.addEventListener('click', function() {
+                _currentSlug = defi.dataset.slug || '';
+                if (_currentSlug && modalScoresList) {
+                    modalScoresList.innerHTML = '<p style="color:#888;font-style:italic;margin:0;">Chargement...</p>';
+                    Quiz48h.getScores(_currentSlug).then(function(scores) {
+                        Quiz48h.renderScoreList(scores, modalScoresList);
+                    });
+                }
+            });
+        });
+
+        window.addEventListener('click', function (e) {
+            if (e.target === pseudoModal) pseudoModal.style.display = 'none';
+            if (e.target === scoreboardModal) scoreboardModal.style.display = 'none';
+        });
     </script>
 </body>
 </html>
