@@ -14,8 +14,8 @@ const challenges = [
     {
         question: "Combien y a t-il de triangles dans l'image ?",
         imageURL: "./triangle_3.png",
-        options: [15, 16, 17, 18, 19, 20, 21],
-        answer: 2
+        options: [18, 19, 20, 21, 22, 23, 24, 25],
+        answer: 6
     }
 ]
 
