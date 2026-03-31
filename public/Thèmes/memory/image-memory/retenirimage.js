@@ -2,141 +2,117 @@ const DUREE_IMAGE = 10;
 const POINTS_PAR_BONNE_REPONSE = 80;
 
 const manches = [
-	{
-		label: "Salon lumineux",
-		sceneAria: "Scene avec ballon rouge, tasse verte, lampe jaune et sac bleu",
-		objets: [
-			{ texte: "Ballon rouge", top: "14%", left: "12%", couleur: "#d7492f" },
-			{ texte: "Tasse verte", top: "69%", left: "36%", couleur: "#1d9b61" },
-			{ texte: "Lampe jaune", top: "22%", left: "72%", couleur: "#f19b1f", textColor: "#1f1a13" },
-			{ texte: "Sac bleu", top: "76%", left: "74%", couleur: "#2f6ee2" }
-		],
-		questions: [
+    {
+        label: "Niveau 1 : Pop Initial",
+        sceneAria: "Bureau avec cahier rose, casque bleu et tasse verte",
+        imagePath: "imgs/niveau1.png",
+        questions: [
+            {
+                texte: "De quelle couleur était le cahier ?",
+                options: ["Rose", "Bleu", "Vert"],
+                bonneReponse: "Rose"
+            },
+            {
+                texte: "De quelle couleur était le casque ?",
+                options: ["Bleu", "Jaune", "Rouge"],
+                bonneReponse: "Bleu"
+            },
+            {
+                texte: "La tasse était-elle verte ?",
+                options: ["Oui", "Non"],
+                bonneReponse: "Oui"
+            }
+        ]
+    },
+    {
+        label: "Niveau 2 : Choc des couleurs",
+        sceneAria: "Bureau avec dés, cahier orange, casque jaune et tasse bleue",
+        imagePath: "imgs/niveau2.png",
+        questions: [
+            {
+                texte: "De quelle couleur était le casque ?",
+                options: ["Jaune", "Rouge", "Vert"],
+                bonneReponse: "Jaune"
+            },
+            {
+                texte: "la Tasse était-elle verte ?",
+                options: ["Oui", "Non"],
+                bonneReponse: "Non"
+            },
+            {
+                texte: "Combien y avait-il de dés sur le bureau ?",
+                options: ["3", "5", "6","7"],
+                bonneReponse: "7"
+            }
+        ]
+    },
+    {
+        label: "Niveau 3 : Studio d'Animation",
+        sceneAria: "Bureau avec objectifs photo, cahier jaune et casque rouge",
+        imagePath: "imgs/niveau3.png",
+        questions: [
+            {
+                texte: "De quelle couleur était la tasse ?",
+                options: ["verte", "rouge" , "bleue" , "multicolore"],
+                bonneReponse: "bleue"
+            },
+            {
+                
+				texte: "De quelle couleur était le ruban?",
+                options: ["gris", "bleu", "vert" , "multicolore"],
+                bonneReponse: "multicolore"
+            },
+            {
+                texte: "Quelle était la couleur du casque ?",
+                options: ["Rouge", "Noir", "Bleu"],
+                bonneReponse: "Rouge"
+            }
+        ]
+    },
+    {
+        label: "Niveau 4 : Espace Multitâche",
+        sceneAria: "Câbles mêlés, cahier violet, casque vert et chocolat",
+        imagePath: "imgs/niveau4.png",
+        questions: [
+            {
+                texte: "Quelle couleur avait le casque ?",
+                options: ["Vert", "Rouge", "Bleu"],
+                bonneReponse: "Vert"
+            },
 			{
-				texte: "Quelle etait la couleur du ballon ?",
-				options: ["Rouge", "Bleu", "Vert"],
-				bonneReponse: "Rouge"
-			},
-			{
-				texte: "Une lampe etait-elle presente ?",
-				options: ["Oui", "Non"],
-				bonneReponse: "Oui"
-			},
-			{
-				texte: "De quelle couleur etait le sac ?",
-				options: ["Bleu", "Noir", "Orange"],
-				bonneReponse: "Bleu"
-			}
-		]
-	},
-	{
-		label: "Cuisine coloree",
-		sceneAria: "Scene avec livre violet, plante verte, mug orange et casque gris",
-		objets: [
-			{ texte: "Livre violet", top: "18%", left: "18%", couleur: "#6c4dbd" },
-			{ texte: "Plante verte", top: "66%", left: "20%", couleur: "#2f8f58" },
-			{ texte: "Mug orange", top: "30%", left: "60%", couleur: "#f2822e" },
-			{ texte: "Casque gris", top: "74%", left: "66%", couleur: "#667085" }
-		],
-		questions: [
-			{
-				texte: "Quel objet etait violet ?",
-				options: ["Le livre", "Le casque", "La plante"],
-				bonneReponse: "Le livre"
-			},
-			{
-				texte: "Le mug etait de quelle couleur ?",
-				options: ["Orange", "Rouge", "Blanc"],
-				bonneReponse: "Orange"
-			},
-			{
-				texte: "Y avait-il une plante ?",
-				options: ["Oui", "Non"],
-				bonneReponse: "Oui"
-			}
-		]
-	},
-	{
-		label: "Bureau creatif",
-		sceneAria: "Scene avec clavier noir, carnet rose, gourde cyan et chaussettes jaunes",
-		objets: [
-			{ texte: "Clavier noir", top: "22%", left: "14%", couleur: "#2f2f34" },
-			{ texte: "Carnet rose", top: "60%", left: "34%", couleur: "#db4f87" },
-			{ texte: "Gourde cyan", top: "22%", left: "64%", couleur: "#1da8b5" },
-			{ texte: "Chaussettes jaunes", top: "72%", left: "68%", couleur: "#f3bb2d", textColor: "#332400" }
-		],
-		questions: [
-			{
-				texte: "Quel objet etait noir ?",
-				options: ["Le clavier", "Le carnet", "La gourde"],
-				bonneReponse: "Le clavier"
-			},
-			{
-				texte: "Le carnet etait de quelle couleur ?",
-				options: ["Rose", "Bleu", "Marron"],
-				bonneReponse: "Rose"
-			},
-			{
-				texte: "Quelle couleur avait la gourde ?",
-				options: ["Cyan", "Orange", "Blanc"],
-				bonneReponse: "Cyan"
-			}
-		]
-	},
-	{
-		label: "Atelier photo",
-		sceneAria: "Scene avec appareil blanc, cadre rouge, trousse verte et cable bleu marine",
-		objets: [
-			{ texte: "Appareil blanc", top: "20%", left: "16%", couleur: "#f3f3f3", textColor: "#1a1f2c" },
-			{ texte: "Cadre rouge", top: "62%", left: "20%", couleur: "#cc3f3f" },
-			{ texte: "Trousse verte", top: "30%", left: "58%", couleur: "#2f8e53" },
-			{ texte: "Cable bleu marine", top: "74%", left: "62%", couleur: "#27477e" }
-		],
-		questions: [
-			{
-				texte: "L'appareil photo etait de quelle couleur ?",
-				options: ["Blanc", "Noir", "Argent"],
-				bonneReponse: "Blanc"
-			},
-			{
-				texte: "Quel objet etait rouge ?",
-				options: ["Le cadre", "La trousse", "Le cable"],
-				bonneReponse: "Le cadre"
-			},
-			{
-				texte: "Le cable etait plutot...",
-				options: ["Bleu marine", "Jaune", "Rose"],
-				bonneReponse: "Bleu marine"
-			}
-		]
-	},
-	{
-		label: "Coin lecture",
-		sceneAria: "Scene avec coussin beige, tasse noire, tablette verte et lampe orange",
-		objets: [
-			{ texte: "Coussin beige", top: "20%", left: "18%", couleur: "#b59f7a" },
-			{ texte: "Tasse noire", top: "70%", left: "30%", couleur: "#2e2e30" },
-			{ texte: "Tablette verte", top: "28%", left: "62%", couleur: "#389f66" },
-			{ texte: "Lampe orange", top: "72%", left: "68%", couleur: "#e1822c" }
-		],
-		questions: [
-			{
-				texte: "Quelle couleur avait le coussin ?",
-				options: ["Beige", "Bleu", "Rouge"],
-				bonneReponse: "Beige"
-			},
-			{
-				texte: "La tasse etait-elle noire ?",
-				options: ["Oui", "Non"],
-				bonneReponse: "Oui"
-			},
-			{
-				texte: "Quel objet etait vert ?",
-				options: ["La tablette", "La lampe", "La tasse"],
-				bonneReponse: "La tablette"
-			}
-		]
-	}
+                texte: "combien y avait-il de dés?",
+                options: ["6", "8","10","12","14"],
+                bonneReponse: "8"
+            },
+            {
+                texte: "De quelle couleur étaient les lunettes ?",
+                options: ["Bleues", "Noires", "Roses","vertes"],
+                bonneReponse: "Bleues"
+            }
+        ]
+    },
+    {
+        label: "Niveau 5 : Lab Innovation",
+        sceneAria: "Drones, composants électroniques, cahier vert sapin et casque orange",
+        imagePath: "imgs/niveau5.png",
+        questions: [
+            {
+                texte: "Le cahier était-il ouvert ou fermé ?",
+                options: ["Ouvert", "Fermé"],
+                bonneReponse: "Fermé"
+            },
+            {
+                texte: "Quelle couleur avait la tasse ?",
+                options: ["Jaune", "Verte", "Bleue"],
+                bonneReponse: "Jaune"
+            },
+            {
+                texte: "Qu'y avait-il sur les cadres photos ?",
+                options: ["Des hommes d'affaires","des mariés" ,"des bricoleurs"],
+                bonneReponse: "des bricoleurs"
+            }
+        ]
+    }
 ];
 
 const elBadgeEtape = document.getElementById("badge-etape");
@@ -199,25 +175,15 @@ function lancerBarreCompteRebours() {
 }
 
 function rendreObjets(manche) {
-	elImageScene.innerHTML = "";
-	elImageScene.setAttribute("aria-label", manche.sceneAria);
-
-	manche.objets.forEach((objet, idx) => {
-		const span = document.createElement("span");
-		span.className = "objet";
-		span.textContent = objet.texte;
-		span.style.top = objet.top;
-		span.style.left = objet.left;
-		span.style.background = objet.couleur;
-
-		if (objet.textColor) {
-			span.style.color = objet.textColor;
-			span.style.textShadow = "none";
-		}
-
-		span.style.animationDelay = `${idx * 120}ms`;
-		elImageScene.appendChild(span);
-	});
+    elImageScene.innerHTML = ""; 
+    const img = document.createElement("img");
+    img.src = manche.imagePath;
+    img.id = "img-quiz"; // ID pour le flou
+    img.style.width = "100%";
+    img.style.height = "100%";
+    img.style.objectFit = "cover";
+    img.style.borderRadius = "22px";
+    elImageScene.appendChild(img);
 }
 
 function marquerOptionSelectionnee(questionIndex, reponse) {
