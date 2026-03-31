@@ -1,0 +1,52 @@
+<!-- index.html -->
+<!DOCTYPE html>
+<html lang="fr">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Jeu de mémoire</title>
+  <link rel="stylesheet" href="number.css" />
+</head>
+
+<body>
+  <main class="container">
+    <h1>Jeu de mémoire</h1>
+    <p class="subtitle">
+      Mémorise la suite de nombres affichée. Tu avances uniquement quand tu fais
+      <strong>Win</strong>.
+    </p>
+
+    <section class="card">
+      <div class="step-header">
+        <span id="levelLabel">Niveau 1 / 3</span>
+        <span id="statusBadge" class="badge">En cours</span>
+      </div>
+
+      <h2>Suite à mémoriser</h2>
+      <div id="display" class="code-text">Clique sur "Lancer"</div>
+
+      <div class="form">
+        <button onclick="startLevel()">Lancer</button>
+      </div>
+
+      <div class="form">
+        <div>
+          <label for="answer">Ta réponse</label>
+          <input id="answer" type="text" placeholder="Ex: 12345" />
+        </div>
+        <button onclick="checkAnswer()">Valider</button>
+      </div>
+
+      <div class="result-zone">
+        <p><strong>Statut :</strong> <span id="resultStatus">—</span></p>
+        <button id="retry" class="hidden" onclick="retryLevel()">Rejouer</button>
+        <button id="next" class="hidden" onclick="nextLevel()">Niveau suivant</button>
+      </div>
+    </section>
+  </main>
+
+  <script src="number.js"></script>
+</body>
+
+</html>
