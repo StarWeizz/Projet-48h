@@ -10,7 +10,8 @@ const errorHandler = require("./middlewares/errorHandler");
 const app = express();
 const publicDirectory = path.join(__dirname, "..", "public");
 const themesDirectory = path.join(publicDirectory, "Thèmes");
-const adminPath = "/challenges/exemple/defiexemple/defiexemple.html";
+const adminDirectory = path.join(publicDirectory, "admin");
+const legacyAdminPath = "/challenges/exemple/defiexemple/defiexemple.html";
 
 const challengeRoutes = {
     "/jeu1.html": "/challenges/logique/shapes-challenge/shapes.html",
@@ -52,12 +53,12 @@ for (const [routePath, targetPath] of Object.entries(challengeRoutes)) {
     });
 }
 
-app.get("/admin", (req, res) => {
-    res.redirect(adminPath);
+app.get(legacyAdminPath, (req, res) => {
+    res.redirect("/admin");
 });
 
-app.get("/demo", (req, res) => {
-    res.redirect("/admin");
+app.get("/admin", (req, res) => {
+    res.sendFile(path.join(adminDirectory, "admin.html"));
 });
 
 app.get("/health", (req, res) => {
