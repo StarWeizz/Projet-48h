@@ -10,13 +10,14 @@ const errorHandler = require("./middlewares/errorHandler");
 const app = express();
 const publicDirectory = path.join(__dirname, "..", "public");
 const themesDirectory = path.join(publicDirectory, "Themes");
-const adminPath = "/challenges/exemple/defiexemple/defiexemple.html";
+const adminDirectory = path.join(publicDirectory, "admin");
+const legacyAdminPath = "/challenges/exemple/defiexemple/defiexemple.html";
 
 const challengeRoutes = {
     "/jeu1.html": "/challenges/logique/shapes-challenge/shapes.html",
     "/jeu2.html": "/challenges/logique/logic-challenge/logic.html",
     "/jeu3.html": "/challenges/logique/charade-challenge/charade.html",
-    "/jeu_memoire1.html": "/challenges/Memoire/number.html",
+    "/jeu_memoire1.html": "/challenges/memory/number/number.html",
     "/jeu_memoire2.html": "/challenges/memory/image-memory/retenirimage.html",
     "/jeu_memoire3.html": "/challenges/memory/image-info/imageinfo.html",
     "/jeu_decryptage1.html": "/challenges/Decryptage/cesar/cesar.html",
@@ -24,41 +25,46 @@ const challengeRoutes = {
     "/jeu_decryptage3.html": "/challenges/Decryptage/chimie/chimie.html",
 };
 
+const themePageRedirects = {
+    "/themes/logique": "/logic.html",
+    "/themes/memoire": "/memoire.html",
+    "/themes/decryptage": "/decryptage.html",
+};
+
 app.use(cors());
 app.use(express.json());
 app.use("/public", express.static(publicDirectory));
 app.use("/challenges", express.static(themesDirectory));
-app.use(express.static(publicDirectory));
 
 app.get("/", (req, res) => {
     res.sendFile(path.join(publicDirectory, "index.html"));
 });
 
-app.get("/themes/logique", (req, res) => {
-    res.sendFile(path.join(publicDirectory, "logic.html"));
-});
-
-app.get("/themes/memoire", (req, res) => {
-    res.sendFile(path.join(publicDirectory, "memoire.html"));
-});
-
-app.get("/themes/decryptage", (req, res) => {
-    res.sendFile(path.join(publicDirectory, "decryptage.html"));
-});
-
-for (const [routePath, targetPath] of Object.entries(challengeRoutes)) {
-    app.get(routePath, (req, res) => {
+for (const [routePath, targetPath] of Object.entries(themePageRedirects)) {
+    app.get([routePath, `${routePath}/`], (req, res) => {
         res.redirect(targetPath);
     });
 }
 
+for (const [routePath, targetPath] of Object.entries(challengeRoutes)) {
+    app.get([routePath, `/themes${routePath}`], (req, res) => {
+        res.redirect(targetPath);
+    });
+}
+
+app.get(legacyAdminPath, (req, res) => {
+    res.redirect("/admin");
+});
+
 app.get("/admin", (req, res) => {
-    res.redirect(adminPath);
+    res.sendFile(path.join(adminDirectory, "admin.html"));
 });
 
 app.get("/demo", (req, res) => {
     res.redirect("/admin");
 });
+
+app.use(express.static(publicDirectory));
 
 app.get("/health", (req, res) => {
     res.json({
