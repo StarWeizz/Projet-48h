@@ -24,7 +24,7 @@ let currentQuestionIndex = 0;
 let score = 0;
 
 let timerInterval;
-let timeLeft = 10;
+let timeLeft = 60;
 
 document.addEventListener('DOMContentLoaded', () => {
     const challengesCount = challenges.length;
