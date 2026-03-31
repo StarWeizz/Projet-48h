@@ -227,7 +227,7 @@ const challenges = [
         id: 3,
         question: "Combien y'a t'il de stylo / crayon en tout dans l'image ",
         answeroptions: ["9", "4", "7", "6"],
-        answer: "6",
+        answer: "7",
       },
       {
         id: 4,
