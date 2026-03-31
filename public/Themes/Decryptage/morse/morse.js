@@ -104,6 +104,17 @@ function finishExercise() {
   hintText.textContent = "Tous les messages morse ont été décodés avec succès.";
   textForm.querySelector("button").disabled = true;
   textInput.disabled = true;
+
+  if (typeof Quiz48h !== 'undefined') {
+    Quiz48h.saveScore('morse', 'Décryptage Morse', challenges.length, challenges.length);
+    const scoresDiv = document.createElement('div');
+    scoresDiv.style.marginTop = '1.5rem';
+    scoresDiv.innerHTML = '<h3 style="margin-bottom:0.5rem;">Meilleurs scores</h3><div id="end-scores-list"><p style="color:#888;font-style:italic;">Chargement...</p></div>';
+    hintText.parentNode.appendChild(scoresDiv);
+    Quiz48h.getScores('morse').then(function(scores) {
+      Quiz48h.renderScoreList(scores, document.getElementById('end-scores-list'));
+    });
+  }
 }
 
 textForm.addEventListener("submit", (event) => {

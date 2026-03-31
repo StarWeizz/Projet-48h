@@ -159,6 +159,17 @@ function finishExercise() {
   assembledWord.textContent = challenges[challenges.length - 1].word;
   validateBtn.disabled = true;
   resetBtn.disabled = true;
+
+  if (typeof Quiz48h !== 'undefined') {
+    Quiz48h.saveScore('chimie', 'Chimie & Symboles', challenges.length, challenges.length);
+    const scoresDiv = document.createElement('div');
+    scoresDiv.style.marginTop = '1.5rem';
+    scoresDiv.innerHTML = '<h3 style="margin-bottom:0.5rem;">Meilleurs scores</h3><div id="end-scores-list"><p style="color:#888;font-style:italic;">Chargement...</p></div>';
+    resultHint.parentNode.appendChild(scoresDiv);
+    Quiz48h.getScores('chimie').then(function(scores) {
+      Quiz48h.renderScoreList(scores, document.getElementById('end-scores-list'));
+    });
+  }
 }
 
 resetBtn.addEventListener("click", () => {

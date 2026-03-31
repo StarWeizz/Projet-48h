@@ -412,6 +412,18 @@ function afficherResumeFinal() {
 	btnSuivant.hidden = true;
 	btnSuivant.disabled = true;
 	elBarreTemps.style.animation = "none";
+
+	if (typeof Quiz48h !== 'undefined') {
+		const maxScore = manches.reduce((acc, m) => acc + m.questions.length, 0) * POINTS_PAR_BONNE_REPONSE;
+		Quiz48h.saveScore('retenirimage', 'Retenir l\'image', scoreTotal, maxScore);
+		const scoresDiv = document.createElement('div');
+		scoresDiv.style.marginTop = '1.5rem';
+		scoresDiv.innerHTML = '<h3 style="margin-bottom:0.5rem;">Meilleurs scores</h3><div id="end-scores-list"><p style="color:#888;font-style:italic;">Chargement...</p></div>';
+		elImageScene.parentNode.appendChild(scoresDiv);
+		Quiz48h.getScores('retenirimage').then(function(scores) {
+			Quiz48h.renderScoreList(scores, document.getElementById('end-scores-list'));
+		});
+	}
 }
 
 function afficherQuestionsApresImage() {

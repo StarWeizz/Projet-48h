@@ -309,6 +309,7 @@ const challenges = [
 let currentChallengeIndex = 0;
 let selectedQuestions = [];
 let userAnswers = {};
+let totalCorrect = 0;
 
 const stepLabel = document.getElementById("stepLabel");
 const statusBadge = document.getElementById("statusBadge");
@@ -437,6 +438,7 @@ function showResult(correctCount) {
   resultContent.className = isWin ? "win" : "lose";
 
   if (isWin) {
+    totalCorrect += correctCount;
     resultContent.textContent += " Bien joué ! 🎉";
     if (currentChallengeIndex < challenges.length - 1) {
       resultContent.textContent += " Passage au challenge suivant...";
@@ -449,6 +451,18 @@ function showResult(correctCount) {
       resultContent.textContent += " Tu as complété tous les challenges !";
       nextChallengeButton.style.display = "none";
       retryButton.style.display = "none";
+
+      if (typeof Quiz48h !== 'undefined') {
+        const maxScore = challenges.length * 5;
+        const scoresDiv = document.createElement('div');
+        scoresDiv.style.marginTop = '1.5rem';
+        scoresDiv.innerHTML = '<h3 style="margin-bottom:0.5rem;">Meilleurs scores</h3><div id="end-scores-list"><p style="color:#888;font-style:italic;">Chargement...</p></div>';
+        resultContent.parentNode.appendChild(scoresDiv);
+        Quiz48h.saveScore('imageinfo', 'Infos Cachées', totalCorrect, maxScore);
+        Quiz48h.getScores('imageinfo').then(function(scores) {
+          Quiz48h.renderScoreList(scores, document.getElementById('end-scores-list'));
+        });
+      }
     }
   } else {
     resultContent.textContent += " Continue à chercher...";

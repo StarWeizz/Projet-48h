@@ -144,6 +144,17 @@ function goToNextChallenge() {
     validateButton.style.display = "none";
     updateScoreDisplay();
     showResult("Serie completee avec succes !", "green");
+
+    if (typeof Quiz48h !== 'undefined') {
+      const scoresDiv = document.createElement('div');
+      scoresDiv.style.marginTop = '1.5rem';
+      scoresDiv.innerHTML = '<h3 style="margin-bottom:0.5rem;">Meilleurs scores</h3><div id="end-scores-list"><p style="color:#888;font-style:italic;">Chargement...</p></div>';
+      resultElement.parentNode.appendChild(scoresDiv);
+      Quiz48h.saveScore('logic', 'Défi Logique', score, challenges.length * SCORE_PER_CORRECT_ANSWER);
+      Quiz48h.getScores('logic').then(function(scores) {
+        Quiz48h.renderScoreList(scores, document.getElementById('end-scores-list'));
+      });
+    }
     return;
   }
 

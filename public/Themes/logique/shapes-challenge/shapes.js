@@ -160,9 +160,21 @@ function endQuiz() {
         <div class="end-screen">
             <h2>Quiz terminé !</h2>
             <p>Score : ${score} / ${currentQuestions.length}</p>
+            <p>${score >= 3 ? '🏆 Excellent !' : score >= 2 ? '👍 Bien joué !' : '💪 Continue à t\'entraîner !'}</p>
             <button id="restart-btn">Rejouer</button>
+            <div id="end-scores" style="margin-top:1.5rem;">
+                <h3 style="margin-bottom:0.5rem;">Meilleurs scores</h3>
+                <div id="end-scores-list"><p style="color:#888;font-style:italic;">Chargement...</p></div>
+            </div>
         </div>
     `;
+
+    if (typeof Quiz48h !== 'undefined') {
+        Quiz48h.saveScore('shapes', 'Formes & Triangles', score, currentQuestions.length);
+        Quiz48h.getScores('shapes').then(function(scores) {
+            Quiz48h.renderScoreList(scores, document.getElementById('end-scores-list'));
+        });
+    }
 
     document.getElementById("restart-btn").addEventListener("click", () => {
         toggleGame();

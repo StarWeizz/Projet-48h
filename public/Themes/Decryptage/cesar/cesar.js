@@ -87,6 +87,17 @@ function finishExercise() {
   hintText.textContent = "Tous les messages ont ete decodes avec succes.";
   submitButton.disabled = true;
   decalageInput.disabled = true;
+
+  if (typeof Quiz48h !== 'undefined') {
+    Quiz48h.saveScore('cesar', 'Décryptage César', challenges.length, challenges.length);
+    const scoresDiv = document.createElement('div');
+    scoresDiv.style.marginTop = '1.5rem';
+    scoresDiv.innerHTML = '<h3 style="margin-bottom:0.5rem;">Meilleurs scores</h3><div id="end-scores-list"><p style="color:#888;font-style:italic;">Chargement...</p></div>';
+    hintText.parentNode.appendChild(scoresDiv);
+    Quiz48h.getScores('cesar').then(function(scores) {
+      Quiz48h.renderScoreList(scores, document.getElementById('end-scores-list'));
+    });
+  }
 }
 
 decalageForm.addEventListener("submit", (event) => {

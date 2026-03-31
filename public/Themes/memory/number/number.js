@@ -2,6 +2,7 @@ let level = 1;
 let sequence = [];
 let speed = 1000;
 let isPlaying = false;
+let score = 0;
 
 function updateUI() {
 	document.getElementById("levelLabel").textContent = `Niveau ${level} / 3`;
@@ -88,6 +89,7 @@ function retryLevel() {
 }
 
 function nextLevel() {
+	score++;
 	if (level < 3) {
 		level++;
 		updateUI();
@@ -98,8 +100,20 @@ function nextLevel() {
 		document.getElementById("next").classList.add("hidden");
 		document.getElementById("retry").classList.add("hidden");
 	} else {
-		alert("Bravo, tu as terminé le jeu !");
-		location.reload();
+		document.getElementById("next").classList.add("hidden");
+		document.getElementById("resultStatus").textContent = "Bravo, tu as terminé le jeu ! 🏆";
+
+		if (typeof Quiz48h !== 'undefined') {
+			Quiz48h.saveScore('number', 'Séquences de chiffres', score, 3);
+			const container = document.getElementById("resultStatus").parentNode;
+			const scoresDiv = document.createElement('div');
+			scoresDiv.style.marginTop = '1.5rem';
+			scoresDiv.innerHTML = '<h3 style="margin-bottom:0.5rem;">Meilleurs scores</h3><div id="end-scores-list"><p style="color:#888;font-style:italic;">Chargement...</p></div>';
+			container.appendChild(scoresDiv);
+			Quiz48h.getScores('number').then(function(scores) {
+				Quiz48h.renderScoreList(scores, document.getElementById('end-scores-list'));
+			});
+		}
 	}
 }
 
