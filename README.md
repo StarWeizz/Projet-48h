@@ -1,34 +1,32 @@
 # Challenge 48H
 
-JS natif + API backend Express + MongoDB pour une plateforme de defis interactifs avec themes, enigmes et systeme de progression.
+Application web de defis en JS natif avec backend Express et MongoDB pour gerer les joueurs, la progression et le classement.
 
 ## Concept
 
-Le projet consiste a proposer une application web dans laquelle les joueurs progressent a travers plusieurs univers. Chaque theme contient plusieurs defis avec une difficulte croissante. Lorsqu'un joueur complete tous les defis d'un theme, le theme suivant se debloque.
+Le projet propose plusieurs themes de mini-defis. Les pages d'accueil et de themes sont servies comme pages statiques, tandis que l'API permet de gerer les joueurs, les scores, la validation de reponses et la progression.
 
 ## Stack
 
-- JS natif
+- HTML / CSS / JavaScript natif
 - Node.js
 - Express
 - MongoDB
 - Mongoose
 
-## Fonctionnalites de la base repo
-
-- API REST structuree par ressources
-- Connexion MongoDB centralisee
-- Gestion des themes
-- Gestion des challenges
-- Gestion des joueurs et du leaderboard
-- Validation des reponses cote serveur
-- Progression automatique entre themes
-- Script de seed pour remplir une base de demo
-
-## Arborescence
+## Structure du projet
 
 ```text
 .
+|-- public
+|   |-- assets
+|   |-- css
+|   |-- images
+|   |-- Thèmes
+|   |-- index.html
+|   |-- logic.html
+|   |-- memoire.html
+|   `-- decryptage.html
 |-- src
 |   |-- config
 |   |-- controllers
@@ -52,28 +50,18 @@ Le projet consiste a proposer une application web dans laquelle les joueurs prog
 npm install
 ```
 
-2. Creer un fichier `.env` a la racine du projet ou reutiliser temporairement `src/.env`
+2. Creer un fichier `.env` a la racine du projet
 
 ```env
 PORT=3000
-MONGO_URI=mongodb://127.0.0.1:27017/Challenge_48h
+MONGO_URI=mongodb+srv://quiz_admin:XuKYk13ZIvCB0LoO@cluster0.w2ubvxy.mongodb.net/
 ```
 
-3. Lancer l'API
+4. Demarrer le projet
 
 ```bash
 npm run dev
 ```
-
-4. Optionnel: injecter des donnees de demonstration
-
-```bash
-npm run seed
-```
-
-Attention: la seed reinitialise les collections `themes`, `challenges` et `Players`.
-
-La collection joueur utilise explicitement `Players` pour correspondre a ta base locale actuelle.
 
 ## Scripts disponibles
 
@@ -82,7 +70,51 @@ La collection joueur utilise explicitement `Players` pour correspondre a ta base
 - `npm run seed` : insertion de donnees de demo
 - `npm test` : verification syntaxique minimale
 
-## Endpoints principaux
+## Base de donnees
+
+- Base mongo hébergée : `Challenge_48h`
+- Collection joueur : `Players`
+- La seed reinitialise `themes`, `challenges` et `Players`
+
+## Routes front
+
+### Pages principales
+
+- `/` : page d'accueil
+- `/themes/logique` : page du theme logique
+- `/themes/memoire` : page du theme memoire
+- `/themes/decryptage` : page du theme decryptage
+- `/admin` : page de demonstration / administration API
+
+### Defis statiques
+
+Les defis sont servis depuis `public/Thèmes` via le prefixe `/challenges`.
+
+Exemples :
+
+- `/challenges/logique/shapes-challenge/shapes.html`
+- `/challenges/logique/logic-challenge/logic.html`
+- `/challenges/logique/charade-challenge/charade.html`
+- `/challenges/Memoire/number.html`
+- `/challenges/memory/image-memory/retenirimage.html`
+- `/challenges/memory/image-info/imageinfo.html`
+- `/challenges/Decryptage/cesar/cesar.html`
+- `/challenges/Decryptage/morse/morse.html`
+- `/challenges/Decryptage/chimie/chimie.html`
+
+### Aliases utilises par les pages theme
+
+- `/jeu1.html` -> shapes challenge
+- `/jeu2.html` -> logic challenge
+- `/jeu3.html` -> charade challenge
+- `/jeu_memoire1.html` -> suite numerique
+- `/jeu_memoire2.html` -> image a retenir
+- `/jeu_memoire3.html` -> trouve l'intrus
+- `/jeu_decryptage1.html` -> cesar
+- `/jeu_decryptage2.html` -> morse
+- `/jeu_decryptage3.html` -> chimie
+
+## API
 
 ### Themes
 
@@ -105,44 +137,7 @@ La collection joueur utilise explicitement `Players` pour correspondre a ta base
 - `PATCH /api/players/:id`
 - `POST /api/players/:id/complete-challenge`
 
-## Exemples de payloads
-
-### Creer un theme
-
-```json
-{
-  "name": "Temple des Logiques",
-  "description": "Une serie d'enigmes basees sur l'observation.",
-  "order": 1,
-  "difficulty": "easy"
-}
-```
-
-### Creer un challenge
-
-```json
-{
-  "theme": "ID_DU_THEME",
-  "title": "Les Trois Portes",
-  "order": 1,
-  "type": "logic",
-  "difficulty": "easy",
-  "statement": "Choisis la bonne porte.",
-  "hint": "Observe les contradictions.",
-  "expectedAnswer": "porte-2",
-  "points": 100
-}
-```
-
-### Creer un joueur
-
-```json
-{
-  "username": "team-alpha"
-}
-```
-
-### Valider un challenge
+## Exemple de payload de validation
 
 ```json
 {
@@ -151,16 +146,8 @@ La collection joueur utilise explicitement `Players` pour correspondre a ta base
 }
 ```
 
-## Suite recommandee
+## Notes ==
 
-- brancher un frontend React/Vue sur ces endpoints
-- ajouter l'authentification si vous voulez des vraies sessions
-- proteger les endpoints d'administration si la creation de contenu passe par l'API
-- ajouter un systeme de tentatives, d'indices et de penalites de score
-s
-
-## Page de validation API
-
-Une page de demonstration est disponible sur http://localhost:3000/demo.
-Elle sert a verifier qu'un defi statique peut dialoguer avec l'API, creer ou retrouver un joueur, puis valider une reponse.
-
+- Les pages d'accueil et de themes doivent vivre dans `public/` si elles utilisent `assets/` et `images/` en relatif.
+- Les defis individuels restent dans `public/Thèmes/<theme>/<defi>/`.
+- Pour ajouter un nouveau defi, il suffit de placer son HTML/CSS/JS dans le bon dossier et de le lier depuis la page du theme correspondant.
