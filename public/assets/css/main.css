@@ -3217,15 +3217,16 @@ input, select, textarea {
 
 /* Wrapper */
 
-	#wrapper {
-		-moz-transition: opacity 0.5s ease;
-		-webkit-transition: opacity 0.5s ease;
-		-ms-transition: opacity 0.5s ease;
-		transition: opacity 0.5s ease;
-		position: relative;
-		z-index: 1;
-		overflow: hidden;
-	}
+#wrapper {
+	-moz-transition: opacity 0.5s ease;
+	-webkit-transition: opacity 0.5s ease;
+	-ms-transition: opacity 0.5s ease;
+	transition: opacity 0.5s ease;
+	position: relative;
+	z-index: 1;
+	overflow: hidden;
+	margin-bottom: 100px; /* ajuste la taille */
+}
 
 		#wrapper > .bg {
 			position: absolute;
@@ -4750,6 +4751,7 @@ input, select, textarea {
 	padding: 0;
 	margin: 0 auto;
 	max-width: 800px;
+
 }
 
 	/* Items */
@@ -4759,6 +4761,7 @@ input, select, textarea {
 		text-align: center;
 		border-radius: 8px;
 		transition: transform 0.2s ease;
+		margin-bottom: 50px;
 	}
 
 		.grid-list li:hover {
@@ -4777,4 +4780,9 @@ ul {
 
 #footer h2 {
 	padding: 30px 10px;
+}
+
+.regle {
+	list-style: none;
+	padding-left: 0; /* enlève le décalage à gauche */
 }
